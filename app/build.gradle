@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation "$DEPS_COROUTINES:$DEPS_COROUTINES_VERSION"
+    implementation "$DEPS_CORE:$DEPS_CORE_VERSION"
+    implementation "$DEPS_APPCOMPAT:$DEPS_APPCOMPAT_VERSION"
+    implementation "$DEPS_MATERIAL:$DEPS_MATERIAL_VERSION"
+
+    implementation "$DEPS_CONSTRAINT:$DEPS_CONSTRAINT_VERSION"
+    implementation "$DEPS_RECYCLER:$DEPS_RECYCLER_VERSION"
+
+    implementation "$DEPS_ACTIVITY_KTX:$DEPS_ACTIVITY_KTX_VERSION"
+    implementation "$DEPS_FRAGMENT_KTX:$DEPS_FRAGMENT_KTX_VERSION"
+
+    implementation "$DEPS_VIEWBINDING_PROPERTY_DELEGATE:$DEPS_VIEWBINDING_PROPERTY_DELEGATE_VERSION"
+
+    implementation "$DEPS_HILT:$DEPS_HILT_VERSION"
+    kapt "$DEPS_HILT_KAPT:$DEPS_HILT_VERSION"
+
+    implementation "$DEPS_NAVIGATION_FRAGMENT:$DEPS_NAVIGATION_VERSION"
+    implementation "$DEPS_NAVIGATION_UI:$DEPS_NAVIGATION_VERSION"
+
+    implementation "$DEPS_RETROFIT:$DEPS_RETROFIT_VERSION"
+}
