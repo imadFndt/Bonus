@@ -1,4 +1,8 @@
 package com.simbirsoft.bonus.domain.interactor.profile
 
-class ProfileInteractorImpl: ProfileInteractor {
+import javax.inject.Inject
+
+class ProfileInteractorImpl @Inject constructor(
+
+): ProfileInteractor {
 }

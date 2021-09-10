@@ -1,4 +1,8 @@
 package com.simbirsoft.bonus.domain.interactor.login
 
-class LoginInteractorImpl : LoginInteractor {
+import javax.inject.Inject
+
+class LoginInteractorImpl @Inject constructor(
+
+): LoginInteractor {
 }

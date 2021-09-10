@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string name="timeline_text">Таймлайн</string>
+    <string name="bonuses_text">Список</string>
+    <string name="profile_text">Профиль</string>
+
+    <string name="things_chip_text">Мерч</string>
+    <string name="activities_chip_text">Активности</string>
+    <string name="bonuses_chip_text">Бонусы</string>
 </resources>
