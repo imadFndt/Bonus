@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    implementation "$DEPS_COROUTINES:$DEPS_COROUTINES_VERSION"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "$DEPS_CORE:$DEPS_CORE_VERSION"
     implementation "$DEPS_APPCOMPAT:$DEPS_APPCOMPAT_VERSION"
     implementation "$DEPS_MATERIAL:$DEPS_MATERIAL_VERSION"
