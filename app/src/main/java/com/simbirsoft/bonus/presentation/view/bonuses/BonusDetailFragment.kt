@@ -41,7 +41,7 @@ class BonusDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainActivity()?.setBottomNavigationBarVisibility(isVisible = false)
+        mainActivity?.setBottomNavigationBarVisibility(isVisible = false)
 
         val item = requireArguments().getParcelable<Item>(ARGUMENT_KEY) ?: error("No Arg")
         binding.titleTextView.text = item.text

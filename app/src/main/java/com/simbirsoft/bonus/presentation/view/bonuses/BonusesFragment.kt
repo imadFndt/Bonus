@@ -42,7 +42,7 @@ class BonusesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainActivity()?.setBottomNavigationBarVisibility(isVisible = true)
+        mainActivity?.setBottomNavigationBarVisibility(isVisible = true)
 
         binding.userHelloTextView.text = "Привет, Иван"
 
@@ -59,7 +59,7 @@ class BonusesFragment : Fragment() {
     }
 
     private fun openItemDetails(item: Item) {
-        mainActivity()?.addFragment(BonusDetailFragment.newInstance(item))
+        mainActivity?.addFragment(BonusDetailFragment.newInstance(item))
     }
 
     private fun observeViewModel() {
