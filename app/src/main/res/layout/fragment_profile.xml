@@ -31,11 +31,11 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
 
-        app:shapeAppearance="@style/RoundImageAppearance"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileName"
+        app:shapeAppearance="@style/RoundImageAppearance"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
@@ -72,11 +72,10 @@
         android:id="@+id/profileAboutTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_48dp"
         android:text="@string/profile_about"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textAppearance="@style/TextStyle.Size18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileAvatar" />
 
@@ -84,10 +83,12 @@
         android:id="@+id/profileAboutContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextStyle.Size14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileAboutTitle" />
+        app:layout_constraintTop_toBottomOf="@id/profileAboutTitle"
+        tools:text="Обо мне контент" />
 
     <TextView
         android:id="@+id/profileAchievementsTitle"
@@ -96,8 +97,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:text="@string/profile_achievements"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textAppearance="@style/TextStyle.Size18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileAboutContent" />
 
@@ -105,7 +105,7 @@
         android:id="@+id/profileAchievementsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/profileAchievementsTitle"
         app:spanCount="4"

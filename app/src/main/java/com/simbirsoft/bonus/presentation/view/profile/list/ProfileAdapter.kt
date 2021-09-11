@@ -5,16 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.simbirsoft.bonus.databinding.ItemProfileAchievementsBinding
 
-class ProfileAdapter(private val onItemPressed: (ProfileItem) -> Unit) :
-    ListAdapter<ProfileItem, ProfileAdapter.ProfileViewHolder>(ProfileItemDiffCallback()) {
-
+class ProfileAdapter : ListAdapter<ProfileItem, ProfileAdapter.ProfileViewHolder>(ProfileItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
         val binding = ItemProfileAchievementsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ProfileViewHolder(binding, onItemPressed)
+        return ProfileViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
@@ -23,16 +20,11 @@ class ProfileAdapter(private val onItemPressed: (ProfileItem) -> Unit) :
 
     class ProfileViewHolder(
 
-        private val binding: ViewBinding,
-        private val onItemPressed: (ProfileItem) -> Unit
+        binding: ItemProfileAchievementsBinding
 
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ProfileItem) {
-            binding.root.setOnClickListener {
-                onItemPressed(item)
-            }
-        }
+        fun bind(item: ProfileItem) = Unit
     }
 
     class ProfileItemDiffCallback : DiffUtil.ItemCallback<ProfileItem>() {
@@ -42,4 +34,4 @@ class ProfileAdapter(private val onItemPressed: (ProfileItem) -> Unit) :
     }
 }
 
-data class ProfileItem(val a: String)
+data class ProfileItem(val type: String, val count: Int)

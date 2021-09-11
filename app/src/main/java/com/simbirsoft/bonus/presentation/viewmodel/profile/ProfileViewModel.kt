@@ -19,15 +19,15 @@ class ProfileViewModel : ViewModel() {
             avatarUrl = "",
             status = listOf("Ментор", "Собеседующий", "Еще что-то"),
             department = "Mobile Android",
-            about = "Я очень хороший",
+            about = "TODO",
             achievements = listOf(
-                ProfileItem(""),
-                ProfileItem(""),
-                ProfileItem(""),
-                ProfileItem(""),
-                ProfileItem(""),
-                ProfileItem(""),
-                ProfileItem(""),
+                ProfileItem("", 0),
+                ProfileItem("", 0),
+                ProfileItem("", 0),
+                ProfileItem("", 0),
+                ProfileItem("", 0),
+                ProfileItem("", 0),
+                ProfileItem("", 0),
             )
         )
     }

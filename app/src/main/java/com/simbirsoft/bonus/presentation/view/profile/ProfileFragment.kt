@@ -17,6 +17,12 @@ import kotlinx.coroutines.flow.collect
 
 class ProfileFragment : Fragment() {
 
+    companion object {
+        const val TAG = "ProfileFragment"
+
+        fun newInstance() = ProfileFragment()
+    }
+
     private lateinit var binding: FragmentProfileBinding
     private lateinit var adapter: ProfileAdapter
     private val viewModel by viewModels<ProfileViewModel>()
@@ -28,10 +34,11 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ProfileAdapter {}
+        adapter = ProfileAdapter()
         binding.profileAchievementsList.adapter = adapter
 
         lifecycleScope.launchWhenCreated {
+
             viewModel.profile.collect { profile ->
                 binding.setProfile(profile)
             }
@@ -53,6 +60,7 @@ class ProfileFragment : Fragment() {
             addView(
                 Chip(context).apply {
                     text = status
+                    isEnabled = false
                 }
             )
         }
