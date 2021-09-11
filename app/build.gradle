@@ -62,4 +62,6 @@ dependencies {
     implementation "$DEPS_RETROFIT:$DEPS_RETROFIT_VERSION"
 
     implementation "$DEPS_LOTTIE:$DEPS_LOTTIE_VERSION"
+
+    implementation "$DEPS_GSON:$DEPS_GSON_VERSION"
 }
