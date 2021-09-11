@@ -1,4 +1,8 @@
 package com.simbirsoft.bonus.domain.interactor.timeline
 
-class TimelineInteractorImpl: TimelineInteractor {
+import javax.inject.Inject
+
+class TimelineInteractorImpl @Inject constructor(
+
+): TimelineInteractor {
 }

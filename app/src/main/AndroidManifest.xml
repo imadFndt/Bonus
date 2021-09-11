@@ -12,7 +12,8 @@
         android:name=".BonusApp">
         <activity
             android:name="com.simbirsoft.bonus.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
