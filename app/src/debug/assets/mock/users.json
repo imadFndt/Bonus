@@ -2,7 +2,7 @@
   "users": [
     {
       "name": "Иванов Петр",
-      "mail": "ivanov.petr@simbirsoft.com",
+      "mail": "petr.ivanov@simbirsoft.com",
       "pass": "123456",
       "birthday": "15.02.1984",
       "startwork": "13.08.2021",
@@ -83,7 +83,7 @@
     },
     {
       "name": "Пчеленко Ольга",
-      "mail": "pchelenko.olga@simbirsoft.com",
+      "mail": "olga.pchelenko@simbirsoft.com",
       "pass": "123456",
       "birthday": "19.09.1990",
       "startwork": "22.06.2021",
@@ -172,7 +172,7 @@
     },
     {
       "name": "Панкратов Виктор",
-      "mail": "pankranov.viktor@simbirsoft.com",
+      "mail": "viktor.pankranov@simbirsoft.com",
       "pass": "123456",
       "birthday": "05.12.1989",
       "startwork": "12.07.2020",
@@ -286,7 +286,7 @@
     },
     {
       "name": "Ларин Григорий",
-      "mail": "larin.grigoriy@simbirsoft.com",
+      "mail": "grigoriy.larin@simbirsoft.com",
       "pass": "123456",
       "birthday": "12.04.1987",
       "startwork": "01.02.2018",
