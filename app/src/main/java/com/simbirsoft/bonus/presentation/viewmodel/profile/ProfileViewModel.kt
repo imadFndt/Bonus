@@ -1,12 +1,17 @@
 package com.simbirsoft.bonus.presentation.viewmodel.profile
 
 import androidx.lifecycle.ViewModel
+import com.simbirsoft.bonus.domain.interactor.profile.ProfileInteractor
 import com.simbirsoft.bonus.presentation.view.profile.list.ProfileItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel @Inject constructor(
+    profileInteractor: ProfileInteractor
+) : ViewModel() {
+
     val profile
         get() = profileFlow.asStateFlow()
             .filterNotNull()
@@ -14,22 +19,8 @@ class ProfileViewModel : ViewModel() {
     private val profileFlow = MutableStateFlow<Profile?>(null)
 
     init {
-        profileFlow.value = Profile(
-            name = "Иван иванов",
-            avatarUrl = "",
-            status = listOf("Ментор", "Собеседующий", "Еще что-то"),
-            department = "Mobile Android",
-            about = "TODO",
-            achievements = listOf(
-                ProfileItem("", 0),
-                ProfileItem("", 0),
-                ProfileItem("", 0),
-                ProfileItem("", 0),
-                ProfileItem("", 0),
-                ProfileItem("", 0),
-                ProfileItem("", 0),
-            )
-        )
+        profileInteractor.loadProfile()
+            .also { profileFlow.value = it }
     }
 }
 
