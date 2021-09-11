@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
+import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bonuses_item -> callNavigationFragmentByTag(BonusesFragment.TAG)
+                R.id.profile_item -> callNavigationFragmentByTag(ProfileFragment.TAG)
                 else -> Unit
             }
 
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             desiredFragment = when (tag) {
                 BonusesFragment.TAG -> BonusesFragment.newInstance()
+                ProfileFragment.TAG -> ProfileFragment.newInstance()
                 else -> null
             }
         }
