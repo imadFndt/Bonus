@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
+import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val loadingDialog by lazy { LoaderDialog() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             return@setOnItemSelectedListener true
+        }
+    }
+
+    fun showLoader() {
+        if (loadingDialog.isAdded.not()) {
+            loadingDialog.show(supportFragmentManager, LoaderDialog.TAG)
+        }
+    }
+
+    fun hideLoader() {
+        if (loadingDialog.isAdded) {
+            loadingDialog.dismiss()
         }
     }
 
