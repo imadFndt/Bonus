@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.simbirsoft.bonus.databinding.ItemProfileAchievementsBinding
+import com.simbirsoft.bonus.domain.entity.profile.Achievement
 
-class ProfileAdapter : ListAdapter<ProfileItem, ProfileAdapter.ProfileViewHolder>(ProfileItemDiffCallback()) {
+class ProfileAdapter : ListAdapter<Achievement, ProfileAdapter.ProfileViewHolder>(ProfileItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {
         val binding = ItemProfileAchievementsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,14 +25,12 @@ class ProfileAdapter : ListAdapter<ProfileItem, ProfileAdapter.ProfileViewHolder
 
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ProfileItem) = Unit
+        fun bind(item: Achievement) = Unit
     }
 
-    class ProfileItemDiffCallback : DiffUtil.ItemCallback<ProfileItem>() {
+    class ProfileItemDiffCallback : DiffUtil.ItemCallback<Achievement>() {
 
-        override fun areItemsTheSame(oldItem: ProfileItem, newItem: ProfileItem) = oldItem == newItem
-        override fun areContentsTheSame(oldItem: ProfileItem, newItem: ProfileItem) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: Achievement, newItem: Achievement) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: Achievement, newItem: Achievement) = oldItem == newItem
     }
 }
-
-data class ProfileItem(val type: String, val count: Int)
