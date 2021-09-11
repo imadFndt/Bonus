@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.GridLayoutManager
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusesBinding
+import com.simbirsoft.bonus.presentation.mainActivity
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemAdapter
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDecoration
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDiffUtilCallback
@@ -21,7 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class BonusesFragment : Fragment() {
 
     companion object {
-        private const val COLUMNS_COUNT = 2
         const val TAG = "BonusesFragment"
 
         fun newInstance() = BonusesFragment()
@@ -43,9 +42,13 @@ class BonusesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mainActivity()?.setBottomNavigationBarVisibility(isVisible = true)
+
         binding.userHelloTextView.text = "Привет, Иван"
 
-        itemsAdapter = BonusItemAdapter()
+        itemsAdapter = BonusItemAdapter {
+            openItemDetails(it)
+        }
         binding.itemsRecyclerView.apply {
             adapter = itemsAdapter
             val spacing = resources.getDimensionPixelSize(R.dimen.margin_8dp)
@@ -53,6 +56,10 @@ class BonusesFragment : Fragment() {
         }
 
         observeViewModel()
+    }
+
+    private fun openItemDetails(item: Item) {
+        mainActivity()?.addFragment(BonusDetailFragment.newInstance(item))
     }
 
     private fun observeViewModel() {

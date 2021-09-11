@@ -2,7 +2,11 @@ package com.simbirsoft.bonus
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.commit
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -10,10 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -23,6 +29,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             return@setOnItemSelectedListener true
+        }
+    }
+
+    fun setBottomNavigationBarVisibility(isVisible: Boolean) {
+        binding.bottomNavigationView.isVisible = isVisible
+    }
+
+    fun addFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            replace(R.id.fragmentContainer, fragment)
+            addToBackStack(null)
         }
     }
 
@@ -41,9 +59,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         desiredFragment?.let { fragment ->
-            supportFragmentManager.beginTransaction().apply {
+            supportFragmentManager.commit {
                 replace(R.id.fragmentContainer, fragment, tag)
-                commit()
             }
         }
     }

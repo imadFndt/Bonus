@@ -1,10 +1,12 @@
 package com.simbirsoft.bonus.presentation.viewmodel.bonuses
 
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,6 +46,7 @@ class BonusesViewModel @Inject constructor(
     )
 }
 
+@Parcelize
 data class Item(
     val text: String,
-)
+): Parcelable

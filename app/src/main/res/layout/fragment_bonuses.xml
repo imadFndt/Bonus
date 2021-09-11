@@ -17,7 +17,8 @@
         android:textAppearance="@style/TextStyle.Size16.Medium"
         app:layout_constraintEnd_toStartOf="@id/userAvatarImageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Привет, Иван" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/userAvatarImageView"
@@ -36,12 +37,12 @@
         android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_16dp"
         android:layout_marginEnd="@dimen/margin_16dp"
+        app:chipSpacingHorizontal="@dimen/margin_16dp"
+        app:flow_horizontalStyle="packed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userHelloTextView"
-        app:flow_horizontalStyle="packed"
-        app:singleSelection="true"
-        app:chipSpacingHorizontal="@dimen/margin_16dp">
+        app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/thingsChip"
@@ -70,14 +71,14 @@
         android:id="@+id/itemsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margin_16dp"
         android:layout_marginStart="@dimen/margin_12dp"
+        android:layout_marginTop="@dimen/margin_16dp"
         android:layout_marginEnd="@dimen/margin_12dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/chipGroup"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/bonus_item" />
 
