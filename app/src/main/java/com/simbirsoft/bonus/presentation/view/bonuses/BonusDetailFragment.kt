@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.simbirsoft.bonus.databinding.FragmentBonusDetailBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
-import com.simbirsoft.bonus.presentation.mainActivity
+import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.viewmodel.bonuses.BonusDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class BonusDetailFragment : Fragment() {
@@ -43,7 +41,7 @@ class BonusDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainActivity?.setBottomNavigationBarVisibility(isVisible = false)
+        navigationListener?.setBottomNavigationBarVisibility(isVisible = false)
 
         val item = requireArguments().getParcelable<Bonus>(ARGUMENT_KEY) ?: error("No Arg")
         binding.toolbar.isBackButtonVisible = true

@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?android:attr/actionBarSize"
-        app:icon="@drawable/ic_launcher_foreground"
+        app:icon="@drawable/ic_active_achievement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <com.simbirsoft.bonus.presentation.view.timeline.TimeLineView
+        <com.simbirsoft.bonus.presentation.view.custom.TimeLineView
             android:id="@+id/timeline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

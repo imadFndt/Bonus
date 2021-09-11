@@ -18,11 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    companion object {
-        fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
-    }
+class MainActivity : AppCompatActivity(), NavigationListener {
 
     @Inject
     lateinit var bottomNavigationRouter: BottomNavigationRouter
@@ -67,32 +63,31 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationRouter.saveStateToBundle(outState)
     }
 
-    fun showLoader() {
+    override fun showLoader() {
         if (loadingDialog.isAdded.not()) {
             loadingDialog.show(supportFragmentManager, LoaderDialog.TAG)
         }
     }
 
-    fun hideLoader() {
+    override fun hideLoader() {
         if (loadingDialog.isAdded) {
             loadingDialog.dismiss()
         }
     }
 
-
-    fun setBottomNavigationBarVisibility(isVisible: Boolean) {
+    override fun setBottomNavigationBarVisibility(isVisible: Boolean) {
         binding.bottomNavigationView.isVisible = isVisible
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.fragments.size == 1) {
+        if (supportFragmentManager.fragments.size == MINIMUM_FRAGMENTS) {
             finish()
         }
 
         super.onBackPressed()
     }
 
-    fun addFragment(fragment: Fragment) {
+    override fun addFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             add(R.id.fragmentContainer, fragment)
@@ -100,11 +95,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun replaceFragment(fragment: Fragment) {
+    override fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             replace(R.id.fragmentContainer, fragment)
             addToBackStack(null)
         }
+    }
+
+    companion object {
+        private const val MINIMUM_FRAGMENTS = 1
+
+        fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
     }
 }

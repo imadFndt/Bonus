@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.simbirsoft.bonus.databinding.FragmentTimeLineBinding
-import com.simbirsoft.bonus.presentation.mainActivity
+import com.simbirsoft.bonus.domain.entity.timeline.TimeLineScreenModel
+import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.viewmodel.timeline.TimeLineViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,24 +28,26 @@ class TimeLineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        mainActivity?.setBottomNavigationBarVisibility(isVisible = true)
-
-        binding.toolbar.title = "В полете 2 год и 2 мес"
-
+        navigationListener?.setBottomNavigationBarVisibility(isVisible = true)
         observeViewModel()
     }
 
     private fun observeViewModel() {
-        viewModel.items().observe(viewLifecycleOwner, ::renderItems)
+        viewModel.getScreenModel().observe(viewLifecycleOwner, ::render)
     }
 
-    private fun renderItems(items: List<TimeLineLevelModel>) {
-        binding.timeline.replaceLvls(items)
+    private fun render(model: TimeLineScreenModel) {
+        binding.timeline.replaceLvls(model.lvls)
+        binding.toolbar.title = model.title
+        binding.toolbar.isIconVisible = model.countBonus != COUNT_BONUS_NULL
+        binding.toolbar.onIconPressedListener = {
+            //переход на экран списка с чипсой - бонусы
+        }
     }
 
     companion object {
         const val TAG = "TimeLineFragment"
+        private const val COUNT_BONUS_NULL = 0
 
         @JvmStatic
         fun newInstance() = TimeLineFragment()

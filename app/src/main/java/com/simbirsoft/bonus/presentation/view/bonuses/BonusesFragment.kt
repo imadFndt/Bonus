@@ -11,7 +11,7 @@ import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusesBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
-import com.simbirsoft.bonus.presentation.mainActivity
+import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemAdapter
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDecoration
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDiffUtilCallback
@@ -43,7 +43,7 @@ class BonusesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainActivity?.setBottomNavigationBarVisibility(isVisible = true)
+        navigationListener?.setBottomNavigationBarVisibility(isVisible = true)
 
         binding.toolbar.title = "Привет, Иван"
 
@@ -67,7 +67,7 @@ class BonusesFragment : Fragment() {
     }
 
     private fun openItemDetails(item: Bonus) {
-        mainActivity?.addFragment(BonusDetailFragment.newInstance(item))
+        navigationListener?.addFragment(BonusDetailFragment.newInstance(item))
     }
 
     private fun observeViewModel() {

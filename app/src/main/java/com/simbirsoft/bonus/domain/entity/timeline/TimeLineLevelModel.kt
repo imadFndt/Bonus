@@ -1,4 +1,4 @@
-package com.simbirsoft.bonus.presentation.view.timeline
+package com.simbirsoft.bonus.domain.entity.timeline
 
 /**
  * Модель данных таймлайна
