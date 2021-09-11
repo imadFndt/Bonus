@@ -1,6 +1,11 @@
 <resources>
     <declare-styleable name="ToolbarView">
+        <attr name="toolbarBackground" format="reference" />
+        <attr name="isBackButtonVisible" format="boolean" />
         <attr name="title" format="string" />
+        <attr name="titleTextAppearance" format="reference" />
+        <attr name="description" format="string" />
+        <attr name="descriptionTextAppearance" format="reference" />
         <attr name="icon" format="reference" />
     </declare-styleable>
 

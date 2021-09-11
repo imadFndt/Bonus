@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/actionBarSize"
+    android:layout_height="wrap_content"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <ImageButton
@@ -18,39 +18,59 @@
         app:layout_constraintEnd_toStartOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_left"
+        app:srcCompat="@drawable/ic_arrow_back"
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title"
+        android:id="@+id/titleTextView"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_24dp"
         android:layout_marginEnd="@dimen/margin_4dp"
         android:ellipsize="end"
-        android:gravity="center_vertical"
         android:maxLines="1"
-        android:textAppearance="@style/TextStyle.Size18.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintBottom_toTopOf="@id/descriptionTextView"
         app:layout_constraintEnd_toStartOf="@id/toolbarIconButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/toolbarBackButton"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginBottom="@dimen/margin_24dp"
         app:layout_goneMarginEnd="@dimen/margin_16dp"
         app:layout_goneMarginStart="@dimen/margin_16dp"
         tools:text="Заголовок" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginEnd="@dimen/margin_4dp"
+        android:layout_marginBottom="@dimen/margin_16dp"
+        android:textColor="@color/secondaryTextColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/toolbarIconButton"
+        app:layout_constraintStart_toEndOf="@id/toolbarBackButton"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_goneMarginEnd="@dimen/margin_16dp"
+        app:layout_goneMarginStart="@dimen/margin_16dp"
+        tools:text="Подпись под заголовком" />
 
     <ImageButton
         android:id="@+id/toolbarIconButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="@dimen/margin_4dp"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginBottom="@dimen/margin_16dp"
         android:background="?actionBarItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/title"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription"
-        tools:src="@drawable/ic_apply" />
+        tools:src="@drawable/ic_arrow_back" />
 
 </merge>

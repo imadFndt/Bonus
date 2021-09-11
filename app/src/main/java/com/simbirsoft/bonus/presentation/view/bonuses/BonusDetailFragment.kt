@@ -44,24 +44,11 @@ class BonusDetailFragment : Fragment() {
         navigationListener?.setBottomNavigationBarVisibility(isVisible = false)
 
         val item = requireArguments().getParcelable<Bonus>(ARGUMENT_KEY) ?: error("No Arg")
-        binding.toolbar.isBackButtonVisible = true
         binding.toolbar.onBackPressedListener = {
             activity?.onBackPressed()
         }
         binding.titleTextView.text = item.title
-        binding.descriptionTextView.text = "Уровни \n" +
-                "\n" +
-                "ДМС 1 уровня, которое включает поликлиническое обслуживание, вызов терапевта на дом, экстренная госпитализация, плановая госпитализация. Доступна для выбора сотрудников со стажем 1 год и более.\n" +
-                "\n" +
-                "ДМС 2 уровня, которое включает поликлиническое обслуживание, вызов терапевта на дом, экстренная госпитализация, плановая госпитализация и стоматология. Доступна для выбора сотрудников со стажем 2 года и более.\n" +
-                "\n" +
-                "Информация\n" +
-                "\n" +
-                "Страховая компания — АльфаСтрахование.\n" +
-                "\n" +
-                "На сотрудника выбравшего ДМС компания оформляет полис, который приходит на  корпоративную почту, за несколько дней до начала действия полиса. Также приходит приложение к полису — памятка, где находится список доступных клиник, описаны предоставляемые услуги и исключения. \n" +
-                "\n" +
-                "Рекомендуется установить мобильное приложение «АльфаСтрах», в котором вся информация будет в одном месте. Инструкция по установке мобильного приложения. "
+        binding.descriptionTextView.text = item.description
 
         binding.wantThisBonusButton.setOnClickListener {
             viewModel.onWantBonusPressed()
