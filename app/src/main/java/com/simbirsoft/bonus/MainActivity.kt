@@ -12,7 +12,6 @@ import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
 import com.simbirsoft.bonus.util.BottomNavigationRouter
-import dagger.assisted.AssistedFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
