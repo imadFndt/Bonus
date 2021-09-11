@@ -9,12 +9,13 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusesBinding
+import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
+import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.presentation.mainActivity
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemAdapter
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDecoration
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDiffUtilCallback
 import com.simbirsoft.bonus.presentation.viewmodel.bonuses.BonusesViewModel
-import com.simbirsoft.bonus.presentation.viewmodel.bonuses.Item
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,19 +55,26 @@ class BonusesFragment : Fragment() {
             val spacing = resources.getDimensionPixelSize(R.dimen.margin_8dp)
             addItemDecoration(BonusItemDecoration(spacing))
         }
+        binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId) {
+                R.id.thingsChip -> viewModel.changeSelectedType(BonusType.MERCH)
+                R.id.activitiesChip -> viewModel.changeSelectedType(BonusType.ACTIVITY)
+                R.id.bonusesChip -> viewModel.changeSelectedType(BonusType.BONUS)
+            }
+        }
 
         observeViewModel()
     }
 
-    private fun openItemDetails(item: Item) {
+    private fun openItemDetails(item: Bonus) {
         mainActivity?.addFragment(BonusDetailFragment.newInstance(item))
     }
 
     private fun observeViewModel() {
-        viewModel.items().observe(viewLifecycleOwner, ::renderItems)
+        viewModel.itemsState().observe(viewLifecycleOwner, ::renderItems)
     }
 
-    private fun renderItems(items: List<Item>) {
+    private fun renderItems(items: List<Bonus>) {
         val callback = BonusItemDiffUtilCallback(
             oldItems = itemsAdapter.getItems(),
             newItems = items

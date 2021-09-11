@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.simbirsoft.bonus.R
-import com.simbirsoft.bonus.presentation.viewmodel.bonuses.Item
+import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 
 class BonusItemAdapter(
-    private val items: MutableList<Item> = mutableListOf(),
-    private val onItemPressed: (Item) -> Unit,
+    private val items: MutableList<Bonus> = mutableListOf(),
+    private val onItemPressed: (Bonus) -> Unit,
 ): RecyclerView.Adapter<BonusItemViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BonusItemViewHolder {
@@ -25,21 +25,21 @@ class BonusItemAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    fun swapData(newItems: List<Item>) {
+    fun swapData(newItems: List<Bonus>) {
         this.items.clear()
         this.items.addAll(newItems)
     }
 
-    fun getItems(): List<Item> = items
+    fun getItems(): List<Bonus> = items
 }
 
 class BonusItemViewHolder(
     private val view: View,
-    private val onItemPressed: (Item) -> Unit,
+    private val onItemPressed: (Bonus) -> Unit,
 ): RecyclerView.ViewHolder(view) {
 
-    fun bind(item: Item) {
-        view.findViewById<TextView>(R.id.textView).text = item.text
+    fun bind(item: Bonus) {
+        view.findViewById<TextView>(R.id.textView).text = item.title
         view.setOnClickListener {
             onItemPressed(item)
         }

@@ -1,11 +1,11 @@
 package com.simbirsoft.bonus.presentation.view.bonuses.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
-import com.simbirsoft.bonus.presentation.viewmodel.bonuses.Item
+import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 
 class BonusItemDiffUtilCallback(
-    private val oldItems: List<Item>,
-    private val newItems: List<Item>,
+    private val oldItems: List<Bonus>,
+    private val newItems: List<Bonus>,
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldItems.size
@@ -15,7 +15,7 @@ class BonusItemDiffUtilCallback(
     override fun areItemsTheSame(
         oldItemPosition: Int,
         newItemPosition: Int
-    ): Boolean = oldItems[oldItemPosition].text == newItems[newItemPosition].text
+    ): Boolean = oldItems[oldItemPosition].title == newItems[newItemPosition].title
 
     override fun areContentsTheSame(
         oldItemPosition: Int,
