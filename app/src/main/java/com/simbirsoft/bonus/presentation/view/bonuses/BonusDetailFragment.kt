@@ -44,7 +44,6 @@ class BonusDetailFragment : Fragment() {
         navigationListener?.setBottomNavigationBarVisibility(isVisible = false)
 
         val item = requireArguments().getParcelable<Bonus>(ARGUMENT_KEY) ?: error("No Arg")
-        binding.toolbar.isBackButtonVisible = true
         binding.toolbar.onBackPressedListener = {
             activity?.onBackPressed()
         }

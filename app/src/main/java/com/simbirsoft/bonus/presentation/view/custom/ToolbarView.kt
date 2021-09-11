@@ -133,6 +133,10 @@ class ToolbarView @JvmOverloads constructor(
             toolbarBackground = getDrawable(
                 R.styleable.ToolbarView_toolbarBackground
             ) ?: toolbarBackground
+            isBackButtonVisible = getBoolean(
+                R.styleable.ToolbarView_isBackButtonVisible,
+                isBackButtonVisible
+            )
             title = getString(
                 R.styleable.ToolbarView_title
             ) ?: title
