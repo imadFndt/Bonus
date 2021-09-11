@@ -6,13 +6,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
+import com.simbirsoft.bonus.presentation.view.timeline.TimeLineFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,11 +35,14 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.bonuses_item -> callNavigationFragmentByTag(BonusesFragment.TAG)
                 R.id.profile_item -> callNavigationFragmentByTag(ProfileFragment.TAG)
+                R.id.timeline_item -> callNavigationFragmentByTag(TimeLineFragment.TAG)
                 else -> Unit
             }
 
             return@setOnItemSelectedListener true
         }
+
+        callNavigationFragmentByTag(TimeLineFragment.TAG)
     }
 
     fun showLoader() {
@@ -58,11 +61,23 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.isVisible = isVisible
     }
 
-    fun popBackStack() {
-        supportFragmentManager.popBackStack(null, 0)
+    override fun onBackPressed() {
+        if(supportFragmentManager.fragments.size == 1){
+            finish()
+        }
+
+        super.onBackPressed()
     }
 
     fun addFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            add(R.id.fragmentContainer, fragment)
+            addToBackStack(null)
+        }
+    }
+
+    fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             replace(R.id.fragmentContainer, fragment)
@@ -71,25 +86,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun callNavigationFragmentByTag(tag: String) {
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-        var desiredFragment = supportFragmentManager.findFragmentByTag(tag)
-
-        if (desiredFragment != null) {
+        supportFragmentManager.findFragmentByTag(tag)?.let {
             return
-        } else {
-            desiredFragment = when (tag) {
-                BonusesFragment.TAG -> BonusesFragment.newInstance()
-                ProfileFragment.TAG -> ProfileFragment.newInstance()
+        } ?: run {
+            when (tag) {
+                BonusesFragment.TAG -> replaceFragment(BonusesFragment.newInstance())
+                ProfileFragment.TAG -> replaceFragment(ProfileFragment.newInstance())
+                TimeLineFragment.TAG -> replaceFragment(TimeLineFragment.newInstance())
                 else -> null
             }
         }
-
-        desiredFragment?.let { fragment ->
-            supportFragmentManager.commit {
-                replace(R.id.fragmentContainer, fragment, tag)
-            }
-        }
     }
-
 }
