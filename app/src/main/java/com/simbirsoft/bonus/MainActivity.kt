@@ -1,5 +1,7 @@
 package com.simbirsoft.bonus
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -15,6 +17,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
+    }
 
     private lateinit var binding: ActivityMainBinding
     private val loadingDialog by lazy { LoaderDialog() }
