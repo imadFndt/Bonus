@@ -46,7 +46,7 @@ class BonusDetailFragment : Fragment() {
         val item = requireArguments().getParcelable<Bonus>(ARGUMENT_KEY) ?: error("No Arg")
         binding.toolbar.isBackButtonVisible = true
         binding.toolbar.onBackPressedListener = {
-            mainActivity?.popBackStack()
+            activity?.onBackPressed()
         }
         binding.titleTextView.text = item.title
         binding.descriptionTextView.text = "Уровни \n" +
