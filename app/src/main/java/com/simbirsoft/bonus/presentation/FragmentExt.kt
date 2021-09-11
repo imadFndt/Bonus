@@ -1,7 +1,7 @@
 package com.simbirsoft.bonus.presentation
 
 import androidx.fragment.app.Fragment
-import com.simbirsoft.bonus.MainActivity
+import com.simbirsoft.bonus.NavigationListener
 
-val Fragment.mainActivity
-    get() = activity as? MainActivity
+val Fragment.navigationListener
+    get() = activity as? NavigationListener

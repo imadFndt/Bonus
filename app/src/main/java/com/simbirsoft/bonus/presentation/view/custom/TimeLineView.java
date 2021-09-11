@@ -1,4 +1,4 @@
-package com.simbirsoft.bonus.presentation.view.timeline;
+package com.simbirsoft.bonus.presentation.view.custom;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.simbirsoft.bonus.R;
+import com.simbirsoft.bonus.domain.entity.timeline.TimeLineLevelModel;
 
 import java.util.ArrayList;
 import java.util.List;
