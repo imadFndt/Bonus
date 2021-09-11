@@ -53,8 +53,6 @@ class BonusesFragment : Fragment() {
 
         navigationListener?.setBottomNavigationBarVisibility(isVisible = true)
 
-        binding.toolbar.title = "Привет, Иван"
-
         itemsAdapter = BonusItemAdapter { item, v ->
             openItemDetails(item, v)
         }
