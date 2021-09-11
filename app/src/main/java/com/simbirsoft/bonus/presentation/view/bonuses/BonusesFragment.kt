@@ -23,8 +23,13 @@ class BonusesFragment : Fragment() {
 
     companion object {
         const val TAG = "BonusesFragment"
+        const val TYPE_ARG = "TYPE_ARG"
 
-        fun newInstance() = BonusesFragment()
+        fun newInstance(type: BonusType? = null) = BonusesFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(TYPE_ARG, type)
+            }
+        }
     }
 
     private lateinit var binding: FragmentBonusesBinding
@@ -63,7 +68,19 @@ class BonusesFragment : Fragment() {
             }
         }
 
+        selectDefaultTypeIfPresent()
         observeViewModel()
+    }
+
+    private fun selectDefaultTypeIfPresent() {
+        arguments?.getParcelable<BonusType>(TYPE_ARG)?.let { type ->
+            when(type) {
+                BonusType.MERCH -> binding.thingsChip.isChecked = true
+                BonusType.ACTIVITY -> binding.activitiesChip.isChecked = true
+                BonusType.BONUS -> binding.bonusesChip.isChecked = true
+            }
+            viewModel.changeSelectedType(type)
+        }
     }
 
     private fun openItemDetails(item: Bonus) {
