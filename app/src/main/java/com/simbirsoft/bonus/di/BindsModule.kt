@@ -27,19 +27,19 @@ abstract class BindsModule {
         repo: MainRepositoryImpl
     ): MainRepository
 
-        @Binds
+    @Binds
     @Singleton
     abstract fun bonusesInteractor(
         repo: BonusesInteractorImpl
     ): BonusesInteractor
 
-        @Binds
+    @Binds
     @Singleton
     abstract fun loginInteractor(
         repo: LoginInteractorImpl
     ): LoginInteractor
 
-        @Binds
+    @Binds
     @Singleton
     abstract fun profileInteractor(
         repo: ProfileInteractorImpl

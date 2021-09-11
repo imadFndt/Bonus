@@ -1,4 +1,8 @@
 package com.simbirsoft.bonus.domain.interactor.bonuses
 
-class BonusesInteractorImpl: BonusesInteractor {
+import javax.inject.Inject
+
+class BonusesInteractorImpl @Inject constructor(
+
+): BonusesInteractor {
 }

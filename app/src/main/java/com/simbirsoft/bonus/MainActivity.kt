@@ -2,10 +2,67 @@ package com.simbirsoft.bonus
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.commit
+import com.simbirsoft.bonus.databinding.ActivityMainBinding
+import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.bonuses_item -> callNavigationFragmentByTag(BonusesFragment.TAG)
+                else -> Unit
+            }
+
+            return@setOnItemSelectedListener true
+        }
     }
+
+    fun setBottomNavigationBarVisibility(isVisible: Boolean) {
+        binding.bottomNavigationView.isVisible = isVisible
+    }
+
+    fun addFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            replace(R.id.fragmentContainer, fragment)
+            addToBackStack(null)
+        }
+    }
+
+    private fun callNavigationFragmentByTag(tag: String) {
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        var desiredFragment = supportFragmentManager.findFragmentByTag(tag)
+
+        if (desiredFragment != null) {
+            return
+        } else {
+            desiredFragment = when (tag) {
+                BonusesFragment.TAG -> BonusesFragment.newInstance()
+                else -> null
+            }
+        }
+
+        desiredFragment?.let { fragment ->
+            supportFragmentManager.commit {
+                replace(R.id.fragmentContainer, fragment, tag)
+            }
+        }
+    }
+
 }
