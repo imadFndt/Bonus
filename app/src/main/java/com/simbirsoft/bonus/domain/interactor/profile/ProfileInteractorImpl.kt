@@ -1,27 +1,29 @@
 package com.simbirsoft.bonus.domain.interactor.profile
 
+import com.simbirsoft.bonus.di.MockRepository
 import com.simbirsoft.bonus.domain.entity.profile.Achievement
 import com.simbirsoft.bonus.domain.entity.profile.Profile
+import com.simbirsoft.bonus.domain.repo.MainRepository
 import javax.inject.Inject
 
 class ProfileInteractorImpl @Inject constructor(
-
+    @MockRepository private val repository: MainRepository
 ) : ProfileInteractor {
 
-    override fun loadProfile(): Profile = Profile(
+    override suspend fun loadProfile(): Profile = Profile(
         name = "Иван иванов",
         avatarUrl = "",
         status = listOf("Ментор", "Собеседующий", "Еще что-то"),
         department = "Mobile Android",
-        about = "TODO",
+        joinDate = "20.04.2019",
+        city = "Ульяновск",
+        size = 46,
         achievements = listOf(
-            Achievement("", 0),
-            Achievement("", 0),
-            Achievement("", 0),
-            Achievement("", 0),
-            Achievement("", 0),
-            Achievement("", 0),
-            Achievement("", 0),
+            Achievement("Интервью", 13),
+            Achievement("Менторство", 7),
+            Achievement("Доклады", 7),
+            Achievement("Доклады", 7),
+            Achievement("Доклады", 7),
         )
     )
 }

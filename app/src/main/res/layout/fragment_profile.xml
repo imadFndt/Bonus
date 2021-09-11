@@ -1,113 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/profileName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Иванов Иван" />
-
-    <ImageView
-        android:id="@+id/profileEdit"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:ignore="ContentDescription" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profileAvatar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileName"
-        app:shapeAppearance="@style/RoundImageAppearance"
-        app:srcCompat="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/profileDepartment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@id/profileAvatar"
-        app:layout_constraintTop_toBottomOf="@id/profileName"
-        tools:text="Mobile Android" />
-
-    <HorizontalScrollView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingEnd="8dp"
-        android:scrollbarSize="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/profileAvatar"
-        app:layout_constraintTop_toBottomOf="@id/profileDepartment"
-        tools:ignore="RtlSymmetry">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/profileChips"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profileAvatarCard"
+            android:layout_width="@dimen/margin_64dp"
+            android:layout_height="@dimen/margin_64dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_24dp"
+            app:cardCornerRadius="@dimen/margin_32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileAvatar"
+                android:layout_width="@dimen/margin_40dp"
+                android:layout_height="@dimen/margin_40dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_cool" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/profileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            app:singleLine="true" />
-    </HorizontalScrollView>
+            android:layout_marginStart="@dimen/margin_24dp"
+            android:textAppearance="@style/TextStyle.Size20.Medium"
+            app:layout_constraintStart_toEndOf="@id/profileAvatarCard"
+            app:layout_constraintTop_toTopOf="@id/profileAvatarCard"
+            tools:text="Иван Иванов" />
 
-    <TextView
-        android:id="@+id/profileAboutTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginTop="@dimen/margin_48dp"
-        android:text="@string/profile_about"
-        android:textAppearance="@style/TextStyle.Size18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileAvatar" />
+        <TextView
+            android:id="@+id/profileDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:textAppearance="@style/TextStyle.Size14"
+            app:layout_constraintStart_toEndOf="@id/profileAvatarCard"
+            app:layout_constraintTop_toBottomOf="@id/profileName"
+            tools:text="Mobile Android" />
 
-    <TextView
-        android:id="@+id/profileAboutContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextStyle.Size14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileAboutTitle"
-        tools:text="Обо мне контент" />
+        <ImageView
+            android:id="@+id/profileEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/profileName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profileAvatarCard"
+            app:srcCompat="@drawable/ic_edit"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/profileAchievementsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/profile_achievements"
-        android:textAppearance="@style/TextStyle.Size18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileAboutContent" />
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:clipToPadding="false"
+            android:paddingEnd="8dp"
+            android:scrollbarSize="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profileAvatarCard"
+            app:layout_constraintTop_toBottomOf="@id/profileDepartment"
+            tools:ignore="RtlSymmetry">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profileAchievementsList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/profileAchievementsTitle"
-        app:spanCount="4"
-        tools:listitem="@layout/item_profile_achievements" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/profileChips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                app:singleLine="true" />
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:id="@+id/profileCityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_64dp"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:textAppearance="@style/TextStyle.Size16.Medium.Grey"
+            app:drawableStartCompat="@drawable/ic_city"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileAvatarCard"
+            tools:text="Ульяновск" />
+
+        <TextView
+            android:id="@+id/profileStartDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_64dp"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:textAppearance="@style/TextStyle.Size16.Medium.Grey"
+            app:drawableStartCompat="@drawable/ic_rocket"
+            app:layout_constraintEnd_toStartOf="@id/profileClothesSize"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/profileCityText"
+            app:layout_constraintTop_toBottomOf="@id/profileAvatarCard"
+            tools:text="c 20.04.2019" />
+
+        <TextView
+            android:id="@+id/profileClothesSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_64dp"
+            android:layout_marginEnd="@dimen/margin_24dp"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:textAppearance="@style/TextStyle.Size16.Medium.Grey"
+            app:drawableStartCompat="@drawable/ic_clothes_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileAvatarCard"
+            tools:text="46" />
+
+        <TextView
+            android:id="@+id/profileAchievementsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_32dp"
+            android:text="@string/profile_achievements"
+            android:textAppearance="@style/TextStyle.Size20.Medium"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileCityText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profileAchievementsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingHorizontal="@dimen/margin_16dp"
+            android:paddingTop="@dimen/margin_16dp"
+            android:paddingBottom="@dimen/margin_16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileAchievementsTitle"
+            app:spanCount="4"
+            tools:listitem="@layout/item_profile_achievements" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

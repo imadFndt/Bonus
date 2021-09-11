@@ -6,7 +6,9 @@ data class Profile(
     val avatarUrl: String? = null,
     val status: List<String>,
     val department: String,
-    val about: String,
+    val city: String,
+    val joinDate: String,
+    val size: Int,
     val achievements: List<Achievement>,
 )
 

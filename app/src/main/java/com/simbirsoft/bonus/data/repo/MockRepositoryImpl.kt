@@ -4,6 +4,8 @@ import android.content.Context
 import com.google.gson.Gson
 import com.simbirsoft.bonus.data.ext.fromJson
 import com.simbirsoft.bonus.domain.entity.bonuses.AllBonuses
+import com.simbirsoft.bonus.domain.entity.profile.Achievement
+import com.simbirsoft.bonus.domain.entity.profile.Profile
 import com.simbirsoft.bonus.domain.repo.MainRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
