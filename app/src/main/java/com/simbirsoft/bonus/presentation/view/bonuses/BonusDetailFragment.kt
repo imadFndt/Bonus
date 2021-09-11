@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.simbirsoft.bonus.databinding.FragmentBonusDetailBinding
+import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.presentation.mainActivity
 import com.simbirsoft.bonus.presentation.viewmodel.bonuses.BonusDetailViewModel
-import com.simbirsoft.bonus.presentation.viewmodel.bonuses.Item
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class BonusDetailFragment : Fragment() {
@@ -19,7 +21,7 @@ class BonusDetailFragment : Fragment() {
         const val TAG = "BonusDetailFragment"
         const val ARGUMENT_KEY = "item"
 
-        fun newInstance(item: Item) = BonusDetailFragment().apply {
+        fun newInstance(item: Bonus) = BonusDetailFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(ARGUMENT_KEY, item)
             }
@@ -43,12 +45,12 @@ class BonusDetailFragment : Fragment() {
 
         mainActivity?.setBottomNavigationBarVisibility(isVisible = false)
 
-        val item = requireArguments().getParcelable<Item>(ARGUMENT_KEY) ?: error("No Arg")
+        val item = requireArguments().getParcelable<Bonus>(ARGUMENT_KEY) ?: error("No Arg")
         binding.toolbar.isBackButtonVisible = true
         binding.toolbar.onBackPressedListener = {
-            mainActivity?.popBackStack()
+            activity?.onBackPressed()
         }
-        binding.titleTextView.text = item.text
+        binding.titleTextView.text = item.title
         binding.descriptionTextView.text = "Уровни \n" +
                 "\n" +
                 "ДМС 1 уровня, которое включает поликлиническое обслуживание, вызов терапевта на дом, экстренная госпитализация, плановая госпитализация. Доступна для выбора сотрудников со стажем 1 год и более.\n" +

@@ -1,6 +1,7 @@
 package com.simbirsoft.bonus.di
 
 import com.simbirsoft.bonus.data.repo.MainRepositoryImpl
+import com.simbirsoft.bonus.data.repo.MockRepositoryImpl
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractor
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractorImpl
 import com.simbirsoft.bonus.domain.interactor.login.LoginInteractor
@@ -23,8 +24,16 @@ abstract class BindsModule {
 
     @Binds
     @Singleton
+    @RealRepository
     abstract fun mainRepository(
         repo: MainRepositoryImpl
+    ): MainRepository
+
+    @Binds
+    @Singleton
+    @MockRepository
+    abstract fun mockRepository(
+        repo: MockRepositoryImpl
     ): MainRepository
 
     @Binds

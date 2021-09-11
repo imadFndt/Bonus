@@ -1,52 +1,32 @@
 package com.simbirsoft.bonus.presentation.viewmodel.bonuses
 
-import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
+import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.parcelize.Parcelize
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class BonusesViewModel @Inject constructor(
     private val interactor: BonusesInteractor,
-): ViewModel() {
+) : ViewModel() {
 
-    private val items = MutableLiveData<List<Item>>()
+    private var selectedType = BonusType.MERCH
+    private val itemsState = MutableLiveData<List<Bonus>>()
 
     init {
-        items.value = generateItems()
+        changeSelectedType(selectedType)
     }
 
-    fun items(): LiveData<List<Item>> = items
+    fun itemsState(): LiveData<List<Bonus>> = itemsState
 
-    private fun generateItems() = listOf(
-        Item("1"),
-        Item("2"),
-        Item("3"),
-        Item("4"),
-        Item("5"),
-        Item("6"),
-        Item("7"),
-        Item("8"),
-        Item("9"),
-        Item("10"),
-        Item("11"),
-        Item("12"),
-        Item("13"),
-        Item("14"),
-        Item("15"),
-        Item("16"),
-        Item("17"),
-        Item("18"),
-        Item("19"),
-        Item("20"),
-    )
+    fun changeSelectedType(type: BonusType) = viewModelScope.launch {
+        selectedType = type
+        itemsState.value = interactor.getBonusesByType(type)
+    }
 }
-
-@Parcelize
-data class Item(
-    val text: String,
-): Parcelable

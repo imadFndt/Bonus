@@ -10,11 +10,13 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.simbirsoft.bonus.databinding.FragmentProfileBinding
+import com.simbirsoft.bonus.domain.entity.profile.Profile
 import com.simbirsoft.bonus.presentation.view.profile.list.ProfileAdapter
-import com.simbirsoft.bonus.presentation.viewmodel.profile.Profile
 import com.simbirsoft.bonus.presentation.viewmodel.profile.ProfileViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     companion object {

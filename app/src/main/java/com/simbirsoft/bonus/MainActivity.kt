@@ -6,11 +6,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
+import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
+import com.simbirsoft.bonus.presentation.view.timeline.TimeLineFragment
 import com.simbirsoft.bonus.util.BottomNavigationRouter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -26,13 +29,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationRouter: BottomNavigationRouter
 
     private lateinit var binding: ActivityMainBinding
+    private val loadingDialog by lazy { LoaderDialog() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         savedInstanceState?.let {
             bottomNavigationRouter.restoreState(it)
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 mapOf(
                     BonusesFragment.TAG to BonusesFragment::newInstance,
                     ProfileFragment.TAG to ProfileFragment::newInstance,
+                    TimeLineFragment.TAG to TimeLineFragment::newInstance
                 ),
                 binding.fragmentContainer.id
             )
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.bonuses_item -> bottomNavigationRouter.chooseFragment(BonusesFragment.TAG)
                 R.id.profile_item -> bottomNavigationRouter.chooseFragment(ProfileFragment.TAG)
+                R.id.timeline_item -> bottomNavigationRouter.chooseFragment(TimeLineFragment.TAG)
                 else -> Unit
             }
 
@@ -57,21 +62,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        bottomNavigationRouter.saveStateToBundle(outState)
+    fun showLoader() {
+        if (loadingDialog.isAdded.not()) {
+            loadingDialog.show(supportFragmentManager, LoaderDialog.TAG)
+        }
     }
+
+    fun hideLoader() {
+        if (loadingDialog.isAdded) {
+            loadingDialog.dismiss()
+        }
+    }
+
 
     fun setBottomNavigationBarVisibility(isVisible: Boolean) {
         binding.bottomNavigationView.isVisible = isVisible
     }
 
-    fun popBackStack() {
-        supportFragmentManager.popBackStack(null, 0)
+    override fun onBackPressed() {
+        if(supportFragmentManager.fragments.size == 1){
+            finish()
+        }
+
+        super.onBackPressed()
     }
 
     fun addFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            add(R.id.fragmentContainer, fragment)
+            addToBackStack(null)
+        }
+    }
+
+    fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             replace(R.id.fragmentContainer, fragment)

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.simbirsoft.bonus.presentation.view.custom.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        app:icon="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.simbirsoft.bonus.presentation.view.timeline.TimeLineView
+            android:id="@+id/timeline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ctlv_description_size="12sp"
+            app:ctlv_disable_icon="@drawable/ic_unactive_achievement"
+            app:ctlv_icon_progress_size="28dp"
+            app:ctlv_image_lvl_size="48dp"
+            app:ctlv_margin_horizontal_image="16dp"
+            app:ctlv_margin_horizontal_stroke="40dp"
+            app:ctlv_margin_horizontal_text="75dp"
+            app:ctlv_margin_top_description="4dp"
+            app:ctlv_margin_top_progress_icon="6dp"
+            app:ctlv_margin_top_title="52dp"
+            app:ctlv_progress_icon="@drawable/ic_progress_timeline"
+            app:ctlv_radius_size="40dp"
+            app:ctlv_step_y_first_size="20dp"
+            app:ctlv_step_y_size="80dp"
+            app:ctlv_stroke_size="6dp"
+            app:ctlv_title_size="12sp" />
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
