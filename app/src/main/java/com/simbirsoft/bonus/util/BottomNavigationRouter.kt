@@ -2,10 +2,7 @@ package com.simbirsoft.bonus.util
 
 import android.os.Bundle
 import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
+import androidx.fragment.app.*
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
@@ -39,7 +36,7 @@ class BottomNavigationRouter @Inject constructor(
 
     fun chooseFragment(tag: String) {
         if (tag == currentTag) return
-        fragmentManager.commit {
+        fragmentManager.commit{
             hideNotNull(fragmentManager.findFragmentByTag(currentTag))
 
             val selectedFragment = fragmentManager.findFragmentByTag(tag)
@@ -51,7 +48,7 @@ class BottomNavigationRouter @Inject constructor(
     }
 
     private fun addFragments(tagFragmentMap: Map<String, () -> Fragment>, containerId: Int) {
-        fragmentManager.commit {
+        fragmentManager.commitNow {
 
             tagFragmentMap.entries.forEach { (tag, fragmentBuilder) ->
                 fragmentManager.findFragmentByTag(tag)?.let { return@forEach }

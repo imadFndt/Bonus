@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
@@ -48,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 ),
                 binding.fragmentContainer.id
             )
+            bottomNavigationRouter.chooseFragment(TimeLineFragment.TAG)
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
 
             return@setOnItemSelectedListener true
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        bottomNavigationRouter.saveStateToBundle(outState)
     }
 
     fun showLoader() {
@@ -80,7 +85,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(supportFragmentManager.fragments.size == 1){
+        if (supportFragmentManager.fragments.size == 1) {
             finish()
         }
 
