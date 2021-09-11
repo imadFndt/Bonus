@@ -8,6 +8,9 @@
     <string name="password_label">Пароль</string>
     <string name="login_button_text">ВОЙТИ</string>
 
+    <string name="timeline_toolbar_description">В компании</string>
+    <string name="timeline_toolbar_icon_description">Забрать</string>
+
     <string name="timeline_text">Таймлайн</string>
     <string name="bonuses_text">Плюшки</string>
     <string name="profile_text">Профиль</string>
