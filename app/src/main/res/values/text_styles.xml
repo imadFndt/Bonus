@@ -32,4 +32,22 @@
     <style name="TextStyle.Size18.Medium">
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
+    <style name="TextStyle.Size30">
+        <item name="android:textSize">30sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:letterSpacing">0.0015</item>
+    </style>
+    <style name="TextStyle.Size30.Medium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextStyle.Size40">
+        <item name="android:textSize">30sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:letterSpacing">0.0015</item>
+    </style>
+    <style name="TextStyle.Size40.Medium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
 </resources>
