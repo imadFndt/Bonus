@@ -6,13 +6,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
+import com.simbirsoft.bonus.util.BottomNavigationRouter
+import dagger.assisted.AssistedFactory
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -20,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     companion object {
         fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
     }
+
+    @Inject
+    lateinit var bottomNavigationRouter: BottomNavigationRouter
 
     private lateinit var binding: ActivityMainBinding
 
@@ -29,15 +34,34 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        savedInstanceState?.let {
+            bottomNavigationRouter.restoreState(it)
+        } ?: run {
+            bottomNavigationRouter.init(
+                mapOf(
+                    BonusesFragment.TAG to BonusesFragment::newInstance,
+                    ProfileFragment.TAG to ProfileFragment::newInstance,
+                ),
+                binding.fragmentContainer.id
+            )
+        }
+
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.bonuses_item -> callNavigationFragmentByTag(BonusesFragment.TAG)
-                R.id.profile_item -> callNavigationFragmentByTag(ProfileFragment.TAG)
+                R.id.bonuses_item -> bottomNavigationRouter.chooseFragment(BonusesFragment.TAG)
+                R.id.profile_item -> bottomNavigationRouter.chooseFragment(ProfileFragment.TAG)
                 else -> Unit
             }
 
             return@setOnItemSelectedListener true
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        bottomNavigationRouter.saveStateToBundle(outState)
     }
 
     fun setBottomNavigationBarVisibility(isVisible: Boolean) {
@@ -55,27 +79,4 @@ class MainActivity : AppCompatActivity() {
             addToBackStack(null)
         }
     }
-
-    private fun callNavigationFragmentByTag(tag: String) {
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-        var desiredFragment = supportFragmentManager.findFragmentByTag(tag)
-
-        if (desiredFragment != null) {
-            return
-        } else {
-            desiredFragment = when (tag) {
-                BonusesFragment.TAG -> BonusesFragment.newInstance()
-                ProfileFragment.TAG -> ProfileFragment.newInstance()
-                else -> null
-            }
-        }
-
-        desiredFragment?.let { fragment ->
-            supportFragmentManager.commit {
-                replace(R.id.fragmentContainer, fragment, tag)
-            }
-        }
-    }
-
 }
