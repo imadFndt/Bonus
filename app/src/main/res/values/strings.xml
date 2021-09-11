@@ -17,4 +17,7 @@
     <string name="bonuses_chip_text">Бонусы</string>
 
     <string name="want_this_bonus_text">Получить бонус</string>
+
+    <string name="profile_about">Обо мне</string>
+    <string name="profile_achievements">Достижения</string>
 </resources>
