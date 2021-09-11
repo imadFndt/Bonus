@@ -10,7 +10,7 @@ import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 
 class BonusItemAdapter(
     private val items: MutableList<Bonus> = mutableListOf(),
-    private val onItemPressed: (Bonus) -> Unit,
+    private val onItemPressed: (Bonus, View) -> Unit,
 ): RecyclerView.Adapter<BonusItemViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BonusItemViewHolder {
@@ -35,13 +35,14 @@ class BonusItemAdapter(
 
 class BonusItemViewHolder(
     private val view: View,
-    private val onItemPressed: (Bonus) -> Unit,
+    private val onItemPressed: (Bonus, View) -> Unit,
 ): RecyclerView.ViewHolder(view) {
 
     fun bind(item: Bonus) {
         view.findViewById<TextView>(R.id.textView).text = item.title
         view.setOnClickListener {
-            onItemPressed(item)
+            onItemPressed(item, view)
         }
+        view.transitionName = item.title + item.type.toString()
     }
 }
