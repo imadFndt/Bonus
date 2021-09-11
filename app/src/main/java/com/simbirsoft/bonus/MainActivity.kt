@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.isVisible = isVisible
     }
 
+    fun popBackStack() {
+        supportFragmentManager.popBackStack(null, 0)
+    }
+
     fun addFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

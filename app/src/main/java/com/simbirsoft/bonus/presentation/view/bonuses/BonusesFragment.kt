@@ -44,7 +44,7 @@ class BonusesFragment : Fragment() {
 
         mainActivity?.setBottomNavigationBarVisibility(isVisible = true)
 
-        binding.userHelloTextView.text = "Привет, Иван"
+        binding.toolbar.title = "Привет, Иван"
 
         itemsAdapter = BonusItemAdapter {
             openItemDetails(it)
