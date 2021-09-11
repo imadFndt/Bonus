@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusesBinding
-import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
+import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
 import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemAdapter
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDecoration
@@ -60,7 +60,7 @@ class BonusesFragment : Fragment() {
         }
         binding.itemsRecyclerView.apply {
             adapter = itemsAdapter
-            val spacing = resources.getDimensionPixelSize(R.dimen.margin_8dp)
+            val spacing = resources.getDimensionPixelSize(R.dimen.margin_16dp)
             addItemDecoration(BonusItemDecoration(spacing))
         }
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -86,15 +86,16 @@ class BonusesFragment : Fragment() {
         }
     }
 
-    private fun openItemDetails(item: Bonus, view: View) {
-        navigationListener?.replaceFragment(view, BonusDetailFragment.newInstance(item))
+    private fun openItemDetails(item: BonusItem, view: View) {
+        val bonus = viewModel.getBonus(item) ?: error("Invalid item $item")
+        navigationListener?.replaceFragment(view, BonusDetailFragment.newInstance(bonus))
     }
 
     private fun observeViewModel() {
         viewModel.itemsState().observe(viewLifecycleOwner, ::renderItems)
     }
 
-    private fun renderItems(items: List<Bonus>) {
+    private fun renderItems(items: List<BonusItem>) {
         val callback = BonusItemDiffUtilCallback(
             oldItems = itemsAdapter.getItems(),
             newItems = items

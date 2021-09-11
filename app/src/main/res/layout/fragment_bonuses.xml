@@ -9,8 +9,8 @@
     <com.simbirsoft.bonus.presentation.view.custom.ToolbarView
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="?android:attr/actionBarSize"
-        app:icon="@drawable/ic_launcher_foreground"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,9 +57,7 @@
         android:id="@+id/itemsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/margin_12dp"
         android:layout_marginTop="@dimen/margin_16dp"
-        android:layout_marginEnd="@dimen/margin_12dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
