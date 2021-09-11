@@ -20,18 +20,28 @@ class BonusesViewModel @Inject constructor(
     private val bonusMapper: Mapper<Bonus, BonusItem>,
 ) : ViewModel() {
 
-    private var selectedType = BonusType.MERCH
-    private val itemsState = MutableLiveData<List<BonusItem>>()
     private var bonuses: List<Bonus> = emptyList()
+    private val defaultType = BonusType.MERCH
+
+    private val itemsState = MutableLiveData<List<BonusItem>>()
+    private val selectedTypeState = MutableLiveData(defaultType)
 
     init {
-        changeSelectedType(selectedType)
+        loadBonuses(defaultType)
     }
 
     fun itemsState(): LiveData<List<BonusItem>> = itemsState
+    fun selectedTypeState(): LiveData<BonusType> = selectedTypeState
 
     fun changeSelectedType(type: BonusType) = viewModelScope.launch {
-        selectedType = type
+        if (type == selectedTypeState.value) {
+            return@launch
+        }
+        selectedTypeState.value = type
+        loadBonuses(type)
+    }
+
+    private fun loadBonuses(type: BonusType) = viewModelScope.launch {
         bonuses = interactor.getBonusesByType(type)
         itemsState.value = bonuses.mapList(bonusMapper)
     }

@@ -12,6 +12,8 @@
     <color name="bottom_bar_inactive_color">#9FA6BB</color>
     <color name="bottom_bar_active_color">#FFAA15</color>
 
+    <color name="chip_inactive_color">#E7E9ED</color>
+
     <color name="merch_layer_color">#FDF2D1</color>
     <color name="activity_layer_color">#9E9E9E</color>
     <color name="bonus_layer_color">#D3EDF9</color>

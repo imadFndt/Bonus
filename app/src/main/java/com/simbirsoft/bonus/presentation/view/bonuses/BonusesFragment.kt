@@ -63,12 +63,14 @@ class BonusesFragment : Fragment() {
             val spacing = resources.getDimensionPixelSize(R.dimen.margin_16dp)
             addItemDecoration(BonusItemDecoration(spacing))
         }
-        binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
-            when(checkedId) {
-                R.id.thingsChip -> viewModel.changeSelectedType(BonusType.MERCH)
-                R.id.activitiesChip -> viewModel.changeSelectedType(BonusType.ACTIVITY)
-                R.id.bonusesChip -> viewModel.changeSelectedType(BonusType.BONUS)
-            }
+        binding.merchChip.onChipSelected = {
+            viewModel.changeSelectedType(BonusType.MERCH)
+        }
+        binding.activitiesChip.onChipSelected = {
+            viewModel.changeSelectedType(BonusType.ACTIVITY)
+        }
+        binding.bonusesChip.onChipSelected = {
+            viewModel.changeSelectedType(BonusType.BONUS)
         }
 
         selectDefaultTypeIfPresent()
@@ -77,11 +79,7 @@ class BonusesFragment : Fragment() {
 
     private fun selectDefaultTypeIfPresent() {
         arguments?.getParcelable<BonusType>(TYPE_ARG)?.let { type ->
-            when(type) {
-                BonusType.MERCH -> binding.thingsChip.isChecked = true
-                BonusType.ACTIVITY -> binding.activitiesChip.isChecked = true
-                BonusType.BONUS -> binding.bonusesChip.isChecked = true
-            }
+            selectChipByType(type)
             viewModel.changeSelectedType(type)
         }
     }
@@ -93,6 +91,7 @@ class BonusesFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.itemsState().observe(viewLifecycleOwner, ::renderItems)
+        viewModel.selectedTypeState().observe(viewLifecycleOwner, ::selectChipByType)
     }
 
     private fun renderItems(items: List<BonusItem>) {
@@ -104,5 +103,25 @@ class BonusesFragment : Fragment() {
         itemsAdapter.swapData(items)
         diffResult.dispatchUpdatesTo(itemsAdapter)
         view?.doOnPreDraw { startPostponedEnterTransition() }
+    }
+
+    private fun selectChipByType(type: BonusType) {
+        when(type) {
+            BonusType.MERCH -> {
+                binding.merchChip.setChipSelected(true)
+                binding.activitiesChip.setChipSelected(false)
+                binding.bonusesChip.setChipSelected(false)
+            }
+            BonusType.ACTIVITY -> {
+                binding.merchChip.setChipSelected(false)
+                binding.activitiesChip.setChipSelected(true)
+                binding.bonusesChip.setChipSelected(false)
+            }
+            BonusType.BONUS -> {
+                binding.merchChip.setChipSelected(false)
+                binding.activitiesChip.setChipSelected(false)
+                binding.bonusesChip.setChipSelected(true)
+            }
+        }
     }
 }

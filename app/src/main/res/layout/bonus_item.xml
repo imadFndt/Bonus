@@ -30,7 +30,7 @@
             android:layout_marginStart="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_24dp"
             android:layout_marginEnd="@dimen/margin_16dp"
-            android:textAppearance="@style/TextStyle.Size21.Medium"
+            android:textAppearance="@style/TextStyle.Size20.Medium"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
