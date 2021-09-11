@@ -3,6 +3,9 @@ package com.simbirsoft.bonus.presentation.viewmodel.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
@@ -14,7 +17,8 @@ class LoginViewModel @Inject constructor(
         const val PASSWORD_MAX_LENGTH = 4
     }
 
-    private val loginButtonState = MutableLiveData(false)
+    private val loginButtonState = MutableLiveData(true) // todo поменять на false
+    private val loadingState = MutableLiveData(false)
 
     var login: String = ""
         set(value) {
@@ -29,9 +33,14 @@ class LoginViewModel @Inject constructor(
         }
 
     fun loginButtonState(): LiveData<Boolean> = loginButtonState
+    fun loadingState(): LiveData<Boolean> = loadingState
 
     fun performLogin() {
-
+        viewModelScope.launch {
+            loadingState.value = true
+            delay(1500L)
+            loadingState.value = false
+        }
     }
 
     private fun validateLoginButton() {
