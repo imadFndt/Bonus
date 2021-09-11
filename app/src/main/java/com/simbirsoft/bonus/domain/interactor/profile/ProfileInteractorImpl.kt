@@ -10,20 +10,21 @@ class ProfileInteractorImpl @Inject constructor(
     @MockRepository private val repository: MainRepository
 ) : ProfileInteractor {
 
-    override suspend fun loadProfile(): Profile = Profile(
-        name = "Иван иванов",
-        avatarUrl = "",
-        status = listOf("Ментор", "Собеседующий", "Еще что-то"),
-        department = "Mobile Android",
-        joinDate = "20.04.2019",
-        city = "Ульяновск",
-        size = 46,
-        achievements = listOf(
-            Achievement("Интервью", 13),
-            Achievement("Менторство", 7),
-            Achievement("Доклады", 7),
-            Achievement("Доклады", 7),
-            Achievement("Доклады", 7),
+    override suspend fun loadProfile(): Profile {
+        val user = repository.getUsers().users.first()
+        // TODO Маппер
+        return Profile(
+            name = user.name,
+
+            // TODO определить статусы по достижения
+            status = listOf("Ментор", "Собеседующий", "Еще что-то"),
+            department = user.department,
+            joinDate = user.startwork,
+            city = user.city,
+            size = user.size,
+            achievements = (user.activity + user.merch + user.bonus).map {
+                Achievement(it.name, it.count)
+            }
         )
-    )
+    }
 }
