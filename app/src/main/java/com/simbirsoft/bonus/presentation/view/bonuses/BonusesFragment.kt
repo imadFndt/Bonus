@@ -67,7 +67,7 @@ class BonusesFragment : Fragment() {
     }
 
     private fun openItemDetails(item: Bonus) {
-        mainActivity?.addFragment(BonusDetailFragment.newInstance(item))
+        mainActivity?.addFragment(binding.root, BonusDetailFragment.newInstance(item))
     }
 
     private fun observeViewModel() {

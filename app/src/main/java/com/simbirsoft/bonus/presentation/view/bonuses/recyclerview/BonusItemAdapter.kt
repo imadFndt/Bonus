@@ -43,5 +43,6 @@ class BonusItemViewHolder(
         view.setOnClickListener {
             onItemPressed(item)
         }
+        view.transitionName = "shared_element_container"
     }
 }

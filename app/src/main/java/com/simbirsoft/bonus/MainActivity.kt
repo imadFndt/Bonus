@@ -3,12 +3,14 @@ package com.simbirsoft.bonus
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
+import androidx.transition.Fade
+import com.google.android.material.transition.MaterialContainerTransform
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
@@ -62,9 +64,15 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack(null, 0)
     }
 
-    fun addFragment(fragment: Fragment) {
+    fun addFragment(root: View, fragment: Fragment) {
         supportFragmentManager.commit {
-            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            fragment.apply {
+                sharedElementEnterTransition = MaterialContainerTransform()
+                sharedElementReturnTransition = MaterialContainerTransform()
+                enterTransition = Fade()
+                exitTransition = Fade()
+            }
+            addSharedElement(root, "shared_element_container")
             replace(R.id.fragmentContainer, fragment)
             addToBackStack(null)
         }

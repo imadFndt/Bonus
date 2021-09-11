@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.simbirsoft.bonus.databinding.FragmentBonusDetailBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.presentation.mainActivity
 import com.simbirsoft.bonus.presentation.viewmodel.bonuses.BonusDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class BonusDetailFragment : Fragment() {
