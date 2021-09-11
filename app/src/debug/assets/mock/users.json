@@ -1,0 +1,382 @@
+{
+  "users": [
+    {
+      "name": "Иванов Петр",
+      "mail": "ivanov.petr@simbirsoft.com",
+      "pass": "123456",
+      "birthday": "15.02.1984",
+      "startwork": "13.08.2021",
+      "size": 40,
+      "department": "Mobile Android",
+      "city": "Самара",
+      "activity": [
+        {
+          "name": "Устроится в Симбирсофт",
+          "count": 1
+        }
+      ],
+      "merch": [
+        {
+          "name": "Welcome Box",
+          "count": 1
+        }
+      ],
+      "bonus": [],
+      "timeline": [
+        {
+          "title": "Welcome Box",
+          "description": "Рады тебя видеть!",
+          "icon": "BOX",
+          "count": 5,
+          "maxCount": 5
+        },
+        {
+          "title": "Футболка",
+          "description": "3 месяца",
+          "icon": "T-SHORT",
+          "count": 7,
+          "maxCount": 10
+        },
+        {
+          "title": "Powerbank",
+          "description": "Лучший вопрос",
+          "icon": "POWERBANK",
+          "count": 0,
+          "maxCount": 15
+        },
+        {
+          "title": "Рюкзак",
+          "description": "3 задания",
+          "icon": "BACKPACK",
+          "count": 0,
+          "maxCount": 20
+        },
+        {
+          "title": "Кофта",
+          "description": "3 задания",
+          "icon": "HOODIE",
+          "count": 0,
+          "maxCount": 25
+        },
+        {
+          "title": "1 год в SimbirSoft!",
+          "description": "Поздравляем!",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 30
+        },
+        {
+          "title": "2 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 35
+        },
+        {
+          "title": "3 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 40
+        }
+      ]
+    },
+    {
+      "name": "Пчеленко Ольга",
+      "mail": "pchelenko.olga@simbirsoft.com",
+      "pass": "123456",
+      "birthday": "19.09.1990",
+      "startwork": "22.06.2021",
+      "size": 36,
+      "department": "QA",
+      "city": "Санкт-Петербург",
+      "activity": [
+        {
+          "name": "Устроится в Симбирсофт",
+          "count": 1
+        },
+        {
+          "name": "Пройти испытательный срок",
+          "count": 1
+        }
+      ],
+      "merch": [
+        {
+          "name": "Welcome Box",
+          "count": 1
+        },
+        {
+          "name": "Футболка",
+          "count": 1
+        }
+      ],
+      "bonus": [],
+      "timeline": [
+        {
+          "title": "Welcome Box",
+          "description": "Рады тебя видеть!",
+          "icon": "BOX",
+          "count": 5,
+          "maxCount": 5
+        },
+        {
+          "title": "Футболка",
+          "description": "3 месяца",
+          "icon": "T-SHORT",
+          "count": 10,
+          "maxCount": 10
+        },
+        {
+          "title": "Powerbank",
+          "description": "Лучший вопрос",
+          "icon": "POWERBANK",
+          "count": 12,
+          "maxCount": 15
+        },
+        {
+          "title": "Рюкзак",
+          "description": "3 задания",
+          "icon": "BACKPACK",
+          "count": 0,
+          "maxCount": 20
+        },
+        {
+          "title": "Кофта",
+          "description": "3 задания",
+          "icon": "HOODIE",
+          "count": 0,
+          "maxCount": 25
+        },
+        {
+          "title": "1 год в SimbirSoft!",
+          "description": "Поздравляем!",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 30
+        },
+        {
+          "title": "2 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 35
+        },
+        {
+          "title": "3 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 40
+        }
+      ]
+    },
+    {
+      "name": "Панкратов Виктор",
+      "mail": "pankranov.viktor@simbirsoft.com",
+      "pass": "123456",
+      "birthday": "05.12.1989",
+      "startwork": "12.07.2020",
+      "size": 50,
+      "department": "Backend Python",
+      "city": "Москва",
+      "activity": [
+        {
+          "name": "Устроится в Симбирсофт",
+          "count": 1
+        },
+        {
+          "name": "Пройти испытательный срок",
+          "count": 1
+        },
+        {
+          "name": "Менторство",
+          "count": 2
+        },
+        {
+          "name": "Статья на Хабре",
+          "count": 1
+        },
+        {
+          "name": "Статья для компании",
+          "count": 1
+        }
+      ],
+      "merch": [
+        {
+          "name": "Welcome Box",
+          "count": 1
+        },
+        {
+          "name": "Футболка",
+          "count": 1
+        },
+        {
+          "name": "Powerbank",
+          "count": 1
+        },
+        {
+          "name": "Книга",
+          "count": 1
+        }
+      ],
+      "bonus": [
+        {
+          "name": "ДМС 1 уровня",
+          "count": 1
+        }
+      ],
+      "timeline": [
+        {
+          "title": "Welcome Box",
+          "description": "Рады тебя видеть!",
+          "icon": "BOX",
+          "count": 5,
+          "maxCount": 5
+        },
+        {
+          "title": "Футболка",
+          "description": "3 месяца",
+          "icon": "T-SHORT",
+          "count": 10,
+          "maxCount": 10
+        },
+        {
+          "title": "1 год в SimbirSoft!",
+          "description": "Поздравляем!",
+          "icon": "BONUS",
+          "count": 15,
+          "maxCount": 15
+        },
+        {
+          "title": "Powerbank",
+          "description": "Лучший вопрос",
+          "icon": "POWERBANK",
+          "count": 20,
+          "maxCount": 20
+        },
+        {
+          "title": "Рюкзак",
+          "description": "3 задания",
+          "icon": "BACKPACK",
+          "count": 23,
+          "maxCount": 25
+        },
+        {
+          "title": "Кофта",
+          "description": "3 задания",
+          "icon": "HOODIE",
+          "count": 0,
+          "maxCount": 30
+        },
+        {
+          "title": "2 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 35
+        },
+        {
+          "title": "3 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 40
+        }
+      ]
+    },
+    {
+      "name": "Ларин Григорий",
+      "mail": "larin.grigoriy@simbirsoft.com",
+      "pass": "123456",
+      "birthday": "12.04.1987",
+      "startwork": "01.02.2018",
+      "size": 50,
+      "department": "HR",
+      "city": "Ульяновск",
+      "activity": [
+        {
+          "name": "Устроится в Симбирсофт",
+          "count": 1
+        },
+        {
+          "name": "Пройти испытательный срок",
+          "count": 1
+        }
+      ],
+      "merch": [
+        {
+          "name": "Welcome Box",
+          "count": 1
+        },
+        {
+          "name": "Футболка",
+          "count": 1
+        }
+      ],
+      "bonus": [
+        {
+          "name": "Компенсация техники 1 уровня",
+          "count": 1
+        }
+      ],
+      "timeline": [
+        {
+          "title": "Welcome Box",
+          "description": "Рады тебя видеть!",
+          "icon": "BOX",
+          "count": 5,
+          "maxCount": 5
+        },
+        {
+          "title": "Футболка",
+          "description": "3 месяца",
+          "icon": "T-SHORT",
+          "count": 10,
+          "maxCount": 10
+        },
+        {
+          "title": "1 год в SimbirSoft!",
+          "description": "Поздравляем!",
+          "icon": "BONUS",
+          "count": 15,
+          "maxCount": 15
+        },
+        {
+          "title": "Powerbank",
+          "description": "Лучший вопрос",
+          "icon": "POWERBANK",
+          "count": 0,
+          "maxCount": 20
+        },
+        {
+          "title": "Рюкзак",
+          "description": "3 задания",
+          "icon": "BACKPACK",
+          "count": 0,
+          "maxCount": 25
+        },
+        {
+          "title": "Кофта",
+          "description": "3 задания",
+          "icon": "HOODIE",
+          "count": 0,
+          "maxCount": 30
+        },
+        {
+          "title": "2 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 35
+        },
+        {
+          "title": "3 года в SimbirSoft!",
+          "description": "Coming Soon",
+          "icon": "BONUS",
+          "count": 0,
+          "maxCount": 40
+        }
+      ]
+    }
+  ]
+}
