@@ -21,7 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.simbirsoft.bonus.R;
-import com.simbirsoft.bonus.domain.entity.timeline.TimeLineLevelModel;
+import com.simbirsoft.bonus.domain.entity.profile.Timeline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,7 @@ public class TimeLineView extends View {
     private Bitmap iconDisableLvl;
     private Bitmap iconProgress;
 
-    private List<TimeLineLevelModel> lvls = new ArrayList<>();
+    private List<Timeline> lvls = new ArrayList<>();
 
     public TimeLineView(Context context) {
         super(context);
@@ -78,7 +78,7 @@ public class TimeLineView extends View {
         initItems();
     }
 
-    public void replaceLvls(List<TimeLineLevelModel> lvls) {
+    public void replaceLvls(List<Timeline> lvls) {
         this.lvls.clear();
         this.lvls.addAll(lvls);
         requestLayout();
@@ -160,7 +160,7 @@ public class TimeLineView extends View {
         boolean printProgressIcon = true;
 
         for (int i = 0; i < lvls.size(); i++) {
-            TimeLineLevelModel lvl = lvls.get(i);
+            Timeline lvl = lvls.get(i);
 
             if (i == 0) {
                 printTitleRight(pLine, canvas, lvl.getTitle(), i);
@@ -196,10 +196,10 @@ public class TimeLineView extends View {
         }
     }
 
-    private void printIcon(Paint pLine, TimeLineLevelModel lvl, Canvas canvas, int i) {
+    private void printIcon(Paint pLine, Timeline lvl, Canvas canvas, int i) {
         Bitmap bm = null;
-        if (lvl.getCount() == lvl.getMaxCount() && lvl.getResIcon() != 0) {
-            bm = getBitmap(lvl.getResIcon());
+        if (lvl.getCount() == lvl.getMaxCount() && lvl.getResIcon().length() != 0) {
+            bm = getBitmap(getIconRes(lvl.getResIcon()));
         } else if (iconDisableLvl != null) {
             bm = iconDisableLvl;
         }
@@ -276,7 +276,7 @@ public class TimeLineView extends View {
         }
 
         for (int i = 0; i < lvls.size(); i++) {
-            TimeLineLevelModel lvl = lvls.get(i);
+            Timeline lvl = lvls.get(i);
 
             if (lvl.getPercents() == 100) {
                 if (i == 0) {
@@ -350,5 +350,34 @@ public class TimeLineView extends View {
         } else {
             throw new IllegalArgumentException("unsupported drawable type");
         }
+    }
+
+    private Integer getIconRes(String icon) {
+        int iconRes;
+
+        switch (icon) {
+            case "HOODIE":
+                iconRes = R.drawable.ic_active_achievement;
+                break;
+            case "T-SHIRT":
+                iconRes = R.drawable.ic_active_achievement;
+                break;
+            case "BONUS":
+                iconRes = R.drawable.ic_active_achievement;
+                break;
+            case "BACKPACK":
+                iconRes = R.drawable.ic_active_achievement;
+                break;
+            case "POWERBANK":
+                iconRes = R.drawable.ic_active_achievement;
+                break;
+            case "BOX":
+                iconRes = R.drawable.ic_active_achievement;
+                break;
+            default:
+                iconRes = R.drawable.ic_active_achievement;
+        }
+
+        return iconRes;
     }
 }

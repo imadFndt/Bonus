@@ -1,5 +1,7 @@
 package com.simbirsoft.bonus.domain.entity.timeline
 
+import com.simbirsoft.bonus.domain.entity.profile.Timeline
+
 /**
  * @param title заголовок тулбара
  * @param countBonus количество доступных годовых бонусов
@@ -8,5 +10,5 @@ package com.simbirsoft.bonus.domain.entity.timeline
 data class TimeLineScreenModel(
     val title: String,
     val countBonus: Int,
-    val lvls: List<TimeLineLevelModel>
+    val lvls: List<Timeline>
 )
