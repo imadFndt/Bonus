@@ -20,11 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    companion object {
-        fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
-    }
+class MainActivity : AppCompatActivity(), NavigationListener {
 
     @Inject
     lateinit var bottomNavigationRouter: BottomNavigationRouter
@@ -69,32 +65,32 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationRouter.saveStateToBundle(outState)
     }
 
-    fun showLoader() {
+    override fun showLoader() {
         if (loadingDialog.isAdded.not()) {
             loadingDialog.show(supportFragmentManager, LoaderDialog.TAG)
         }
     }
 
-    fun hideLoader() {
+    override fun hideLoader() {
         if (loadingDialog.isAdded) {
             loadingDialog.dismiss()
         }
     }
 
 
-    fun setBottomNavigationBarVisibility(isVisible: Boolean) {
+    override fun setBottomNavigationBarVisibility(isVisible: Boolean) {
         binding.bottomNavigationView.isVisible = isVisible
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.fragments.size == 1) {
+        if (supportFragmentManager.fragments.size == MINIMUM_FRAGMENTS) {
             finish()
         }
 
         super.onBackPressed()
     }
 
-    fun addFragment(root: View, fragment: Fragment) {
+    override fun replaceFragment(view: View, fragment: Fragment) {
         supportFragmentManager.commit {
             fragment.apply {
                 sharedElementEnterTransition = MaterialContainerTransform()
@@ -102,9 +98,16 @@ class MainActivity : AppCompatActivity() {
                 enterTransition = Fade()
                 exitTransition = Fade()
             }
-            addSharedElement(root, "shared_element_container")
+            addSharedElement(view, "shared_element_container")
+            setReorderingAllowed(true)
             replace(R.id.fragmentContainer, fragment)
             addToBackStack(null)
         }
+    }
+
+    companion object {
+        private const val MINIMUM_FRAGMENTS = 0
+
+        fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
     }
 }

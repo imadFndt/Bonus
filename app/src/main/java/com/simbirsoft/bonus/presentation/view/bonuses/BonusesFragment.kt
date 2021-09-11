@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
@@ -11,7 +12,7 @@ import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusesBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
-import com.simbirsoft.bonus.presentation.mainActivity
+import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemAdapter
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDecoration
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDiffUtilCallback
@@ -48,12 +49,14 @@ class BonusesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainActivity?.setBottomNavigationBarVisibility(isVisible = true)
+        postponeEnterTransition()
+
+        navigationListener?.setBottomNavigationBarVisibility(isVisible = true)
 
         binding.toolbar.title = "Привет, Иван"
 
-        itemsAdapter = BonusItemAdapter {
-            openItemDetails(it)
+        itemsAdapter = BonusItemAdapter { item, v ->
+            openItemDetails(item, v)
         }
         binding.itemsRecyclerView.apply {
             adapter = itemsAdapter
@@ -83,8 +86,8 @@ class BonusesFragment : Fragment() {
         }
     }
 
-    private fun openItemDetails(item: Bonus) {
-        mainActivity?.addFragment(binding.root, BonusDetailFragment.newInstance(item))
+    private fun openItemDetails(item: Bonus, view: View) {
+        navigationListener?.replaceFragment(view, BonusDetailFragment.newInstance(item))
     }
 
     private fun observeViewModel() {
@@ -99,5 +102,6 @@ class BonusesFragment : Fragment() {
         val diffResult = DiffUtil.calculateDiff(callback)
         itemsAdapter.swapData(items)
         diffResult.dispatchUpdatesTo(itemsAdapter)
+        view?.doOnPreDraw { startPostponedEnterTransition() }
     }
 }
