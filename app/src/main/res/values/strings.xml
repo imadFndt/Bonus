@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
 
+    <string name="simbirsoft_text">SimbirSoft</string>
+
+    <string name="auth_title">Авторизация</string>
+    <string name="login_label">Логин</string>
+    <string name="password_label">Пароль</string>
+    <string name="login_button_text">ВОЙТИ</string>
+
     <string name="timeline_text">Таймлайн</string>
     <string name="bonuses_text">Список</string>
     <string name="profile_text">Профиль</string>
