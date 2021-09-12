@@ -30,6 +30,9 @@
     <string name="bonus_request_sent_text">Отправьте заявку на бонус!</string>
     <string name="error_text">Произошла ошибка!</string>
 
+    <string name="login_error">Не удалось войти</string>
+    <string name="auth_needed">Введите данные для авторизации</string>
+
     <plurals name="tasks_text">
         <item quantity="one">%1$d задание</item>
         <item quantity="two">%1$d задания</item>

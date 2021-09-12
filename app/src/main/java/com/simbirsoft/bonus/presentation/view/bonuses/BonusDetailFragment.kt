@@ -25,7 +25,6 @@ class BonusDetailFragment : Fragment() {
         const val TAG = "BonusDetailFragment"
         const val ARGUMENT_KEY = "item"
         const val EMAIL_DEFAULT = "artem.efimov@simbirsoft.com"
-        const val EMAIL_TITLE = "Получить бонус"
 
         fun newInstance(item: Bonus) = BonusDetailFragment().apply {
             arguments = Bundle().apply {
