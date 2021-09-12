@@ -52,9 +52,9 @@ class ProfileFragment : Fragment() {
         adapter.submitList(profile.achievements)
 
         profileName.text = profile.name
-        profileCityText.text = profile.city
-        profileStartDateText.text = resources.getString(R.string.profile_joined_from, profile.joinDate)
-        profileSizeText.text = profile.size.toString()
+        profileCityContent.text = profile.city
+        profileStartDateContent.text = resources.getString(R.string.profile_joined_from, profile.joinDate)
+        profileSizeContent.text = profile.size.toString()
         profileChips.setStatus(profile.roles)
     }
 
@@ -65,6 +65,7 @@ class ProfileFragment : Fragment() {
                 Chip(context).apply {
                     text = status
                     isEnabled = false
+                    setChipBackgroundColorResource(R.color.profile_chip_color)
                     setTextAppearance(R.style.TextStyle_Size14_Medium)
                 }
             )

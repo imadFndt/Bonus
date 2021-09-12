@@ -22,5 +22,5 @@
     <color name="activity_layer_color">#D4F9D3</color>
     <color name="bonus_layer_color">#D3EDF9</color>
 
-    <color name="profile_chip_color">"#F9EAD3</color>
+    <color name="profile_chip_color">#F9EAD3</color>
 </resources>

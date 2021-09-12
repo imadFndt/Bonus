@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.ItemProfileAchievementsBinding
-import com.simbirsoft.bonus.domain.entity.profile.Achievement
+import com.simbirsoft.bonus.presentation.model.profile.Achievement
 
 class ProfileAdapter : ListAdapter<Achievement, ProfileAdapter.ProfileViewHolder>(ProfileItemDiffCallback()) {
 
