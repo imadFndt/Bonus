@@ -29,7 +29,7 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
 
             profileInteractor.loadProfile()
-                .also { profileFlow.emit(profileMapper.map(it)) }
+                ?.also { profileFlow.emit(profileMapper.map(it)) }
         }
     }
 }

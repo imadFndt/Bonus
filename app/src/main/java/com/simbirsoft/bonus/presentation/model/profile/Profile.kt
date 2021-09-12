@@ -10,4 +10,4 @@ data class Profile(
     val achievements: List<Achievement>,
 )
 
-data class Achievement(val type: String, val count: Int)
+data class Achievement(val type: String, val count: Int, val emoji: String)

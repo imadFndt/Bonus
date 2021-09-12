@@ -9,7 +9,7 @@ class ProfileInteractorImpl @Inject constructor(
     @MockRepository private val repository: MainRepository
 ) : ProfileInteractor {
 
-    override suspend fun loadProfile(): User {
+    override suspend fun loadProfile(): User? {
         return repository.getCurrentUser()
     }
 }
