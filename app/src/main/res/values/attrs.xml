@@ -39,4 +39,8 @@
     <declare-styleable name="ChipItem">
         <attr name="chipTitle" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="ButtonView">
+        <attr name="buttonTitle" format="string" />
+    </declare-styleable>
 </resources>

@@ -26,7 +26,7 @@ class LoginViewModel @Inject constructor(
     val loginButtonState: LiveData<Boolean> get() = loginButtonStateData
 
     private val loginStateData = MutableLiveData<LoginState>()
-    private val loginButtonStateData = MutableLiveData(false) // todo поменять на false
+    private val loginButtonStateData = MutableLiveData(false)
 
     var login: String = ""
         set(value) {
@@ -40,18 +40,27 @@ class LoginViewModel @Inject constructor(
             validateLoginButton()
         }
 
+    init {
+        viewModelScope.launch {
+
+
+            load {
+
+                loginStateData.value = if (loginInteractor.findSavedUser() != null) {
+                    LoginState.Success
+                } else {
+                    LoginState.Init
+                }
+            }
+        }
+    }
+
 
     fun performLogin() {
         viewModelScope.launch {
-            try {
-
-                loginStateData.value = LoginState.Loading
-                delay(1200L)
+            load {
                 loginInteractor.login(login, password)
                 loginStateData.value = LoginState.Success
-
-            } catch (e: IllegalStateException) {
-                loginStateData.value = LoginState.Failure
             }
         }
     }
@@ -59,6 +68,16 @@ class LoginViewModel @Inject constructor(
     fun dismissFailure() {
         if (loginState.value != LoginState.Failure) return
         loginStateData.value = LoginState.Init
+    }
+
+    private suspend inline fun load(block: () -> Unit) {
+        try {
+            loginStateData.value = LoginState.Loading
+            delay(1200L)
+            block()
+        } catch (e: IllegalStateException) {
+            loginStateData.value = LoginState.Failure
+        }
     }
 
     private fun validateLoginButton() {

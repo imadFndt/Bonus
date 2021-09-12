@@ -10,6 +10,12 @@ data class User(
     val mail: String,
     @SerializedName("pass")
     val pass: String,
+    @SerializedName("countBonus")
+    val countBonus: Int,
+    @SerializedName("timework")
+    val timework: String,
+    @SerializedName("yearsAtCompany")
+    val yearsAtCompany: Int,
     @SerializedName("birthday")
     val birthday: String,
     @SerializedName("startwork")

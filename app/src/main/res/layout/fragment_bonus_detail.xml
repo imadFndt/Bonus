@@ -30,6 +30,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/itemIcon"
+                android:layout_width="@dimen/margin_56dp"
+                android:layout_height="@dimen/margin_56dp"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:importantForAccessibility="no"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/emojiTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextStyle.Size32"
+                app:layout_constraintBottom_toBottomOf="@id/itemIcon"
+                app:layout_constraintEnd_toEndOf="@id/itemIcon"
+                app:layout_constraintStart_toStartOf="@id/itemIcon"
+                app:layout_constraintTop_toTopOf="@id/itemIcon"
+                tools:text="0x1F4E6"/>
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/bonusTitleTextView"
                 android:layout_width="0dp"
@@ -38,7 +59,7 @@
                 android:layout_marginEnd="@dimen/margin_16dp"
                 android:textAppearance="@style/TextStyle.Size32.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/itemIcon"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ДМС" />
 
@@ -55,15 +76,15 @@
                 app:layout_constraintTop_toBottomOf="@id/bonusTitleTextView"
                 tools:text="Большой текст описания" />
 
-            <com.google.android.material.button.MaterialButton
+            <com.simbirsoft.bonus.presentation.view.custom.ButtonView
                 android:id="@+id/wantThisBonusButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_size"
                 android:layout_marginStart="@dimen/margin_16dp"
                 android:layout_marginTop="@dimen/margin_16dp"
                 android:layout_marginEnd="@dimen/margin_16dp"
                 android:layout_marginBottom="@dimen/margin_16dp"
-                android:text="@string/want_this_bonus_text"
+                app:buttonTitle="@string/want_this_bonus_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

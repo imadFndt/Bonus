@@ -27,7 +27,7 @@ class TimeLineViewModel @Inject constructor(
         dispatchTimeLineModels(interactor.getTimeLineScreenModels())
     }
 
-    private fun dispatchTimeLineModels(models: TimeLineScreenModel) {
-        screenModel.value = models
+    private fun dispatchTimeLineModels(model: TimeLineScreenModel?) {
+        model?.let { screenModel.value = it }
     }
 }

@@ -12,16 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".presentation.view.login.LoginActivity"
+            android:name=".presentation.view.SplashActivity"
             android:configChanges="orientation"
-            android:exported="true"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.view.login.LoginActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"

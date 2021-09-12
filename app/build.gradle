@@ -62,4 +62,5 @@ dependencies {
     implementation "$DEPS_LOTTIE:$DEPS_LOTTIE_VERSION"
 
     implementation "$DEPS_GSON:$DEPS_GSON_VERSION"
+    implementation "$DEPS_TOASTY:$DEPS_TOASTY_VERSION"
 }

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <com.simbirsoft.bonus.presentation.view.custom.ToolbarView
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="@dimen/margin_68dp"
+        app:description="@string/timeline_toolbar_description"
         app:icon="@drawable/ic_active_achievement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextAppearance="@style/TextStyle.Size20.Medium"
-        app:description="@string/timeline_toolbar_description"
-        app:toolbarBackground="@drawable/toolbar_timeline_background"/>
+        app:toolbarBackground="@drawable/toolbar_timeline_background" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,19 +29,19 @@
             android:layout_height="wrap_content"
             app:ctlv_description_size="12sp"
             app:ctlv_disable_icon="@drawable/ic_unactive_achievement"
-            app:ctlv_icon_progress_size="28dp"
-            app:ctlv_image_lvl_size="48dp"
-            app:ctlv_margin_horizontal_image="16dp"
-            app:ctlv_margin_horizontal_stroke="40dp"
-            app:ctlv_margin_horizontal_text="75dp"
-            app:ctlv_margin_top_description="4dp"
-            app:ctlv_margin_top_progress_icon="6dp"
-            app:ctlv_margin_top_title="52dp"
-            app:ctlv_progress_icon="@drawable/ic_progress_timeline"
-            app:ctlv_radius_size="40dp"
-            app:ctlv_step_y_first_size="20dp"
-            app:ctlv_step_y_size="80dp"
-            app:ctlv_stroke_size="6dp"
+            app:ctlv_icon_progress_size="@dimen/margin_28dp"
+            app:ctlv_image_lvl_size="@dimen/margin_48dp"
+            app:ctlv_margin_horizontal_image="@dimen/margin_16dp"
+            app:ctlv_margin_horizontal_stroke="@dimen/margin_40dp"
+            app:ctlv_margin_horizontal_text="@dimen/margin_75dp"
+            app:ctlv_margin_top_description="@dimen/margin_4dp"
+            app:ctlv_margin_top_progress_icon="@dimen/margin_6dp"
+            app:ctlv_margin_top_title="@dimen/margin_52dp"
+            app:ctlv_progress_icon="@drawable/ic_nlo"
+            app:ctlv_radius_size="@dimen/margin_48dp"
+            app:ctlv_step_y_first_size="@dimen/margin_20dp"
+            app:ctlv_step_y_size="@dimen/margin_80dp"
+            app:ctlv_stroke_size="@dimen/margin_6dp"
             app:ctlv_title_size="12sp" />
 
     </ScrollView>

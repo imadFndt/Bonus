@@ -27,6 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeLineView extends View {
+
+    public static final String HOODIE = "HOODIE";
+    public static final String SHIRT = "SHIRT";
+    public static final String BONUS = "BONUS";
+    public static final String BACKPACK = "BACKPACK";
+    public static final String POWERBANK = "POWERBANK";
+    public static final String BOX = "BOX";
+
     private Path pathEnable;
     private Path pathDisable;
     private Paint pLine;
@@ -90,10 +98,10 @@ public class TimeLineView extends View {
         radius = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_radius_size, 0);
         stepYFirst = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_step_y_first_size, 0);
 
-        colorProgress = typedArray.getColor(R.styleable.TimeLineView_ctlv_progress_color, getResources().getColor(R.color.colorPrimary));
-        colorStroke = typedArray.getColor(R.styleable.TimeLineView_ctlv_stroke_color, getResources().getColor(R.color.colorAccent));
-        colorTitle = typedArray.getColor(R.styleable.TimeLineView_ctlv_title_color, getResources().getColor(R.color.secondaryTextColor));
-        colorDescription = typedArray.getColor(R.styleable.TimeLineView_ctlv_description_color, getResources().getColor(R.color.secondaryTextColor));
+        colorProgress = typedArray.getColor(R.styleable.TimeLineView_ctlv_progress_color, getResources().getColor(R.color.static_white_color));
+        colorStroke = typedArray.getColor(R.styleable.TimeLineView_ctlv_stroke_color, getResources().getColor(R.color.deepGrey));
+        colorTitle = typedArray.getColor(R.styleable.TimeLineView_ctlv_title_color, getResources().getColor(R.color.static_white_color));
+        colorDescription = typedArray.getColor(R.styleable.TimeLineView_ctlv_description_color, getResources().getColor(R.color.transparent_white_color));
 
         marginTopDescription = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_margin_top_description, 125);
         marginTopTitle = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_margin_top_title, 125);
@@ -356,23 +364,23 @@ public class TimeLineView extends View {
         int iconRes;
 
         switch (icon) {
-            case "HOODIE":
+            case HOODIE:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "T-SHIRT":
+            case SHIRT:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "BONUS":
+            case BONUS:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "BACKPACK":
+            case BACKPACK:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "POWERBANK":
-                iconRes = R.drawable.ic_active_achievement;
+            case POWERBANK:
+                iconRes = R.drawable.ic_powerbank_active;
                 break;
-            case "BOX":
-                iconRes = R.drawable.ic_active_achievement;
+            case BOX:
+                iconRes = R.drawable.ic_box_active;
                 break;
             default:
                 iconRes = R.drawable.ic_active_achievement;
