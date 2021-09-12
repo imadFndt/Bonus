@@ -14,4 +14,6 @@ interface NavigationListener {
     fun showLoader()
 
     fun hideLoader()
+
+    fun showPopUpWindow()
 }

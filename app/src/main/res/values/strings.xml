@@ -25,6 +25,10 @@
     <string name="profile_achievements">Достижения</string>
     <string name="profile_joined_from">с %s</string>
 
+    <string name="popup_bonus_description">Тебя уже ждет новый бонус, скорее получи его.</string>
+    <string name="popup_bonus_title">1 год в SimbirSoft!</string>
+    <string name="popup_bonus_congratulations">Поздравляем!</string>
+
     <plurals name="tasks_text">
         <item quantity="one">%1$d задание</item>
         <item quantity="two">%1$d задания</item>

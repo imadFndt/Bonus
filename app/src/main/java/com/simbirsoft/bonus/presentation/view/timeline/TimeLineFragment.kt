@@ -14,6 +14,7 @@ import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.viewmodel.timeline.TimeLineViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class TimeLineFragment : Fragment() {
 
@@ -43,7 +44,10 @@ class TimeLineFragment : Fragment() {
         binding.toolbar.title = model.title
         binding.toolbar.isIconVisible = model.countBonus != COUNT_BONUS_NULL
         binding.toolbar.onIconPressedListener = {
-            navigationListener?.replaceFragment(requireView(), BonusesFragment.newInstance(BonusType.BONUS))
+            navigationListener?.replaceFragment(
+                requireView(),
+                BonusesFragment.newInstance(BonusType.BONUS)
+            )
         }
     }
 

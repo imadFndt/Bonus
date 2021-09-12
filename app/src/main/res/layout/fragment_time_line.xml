@@ -30,7 +30,7 @@
             app:ctlv_description_size="12sp"
             app:ctlv_disable_icon="@drawable/ic_bonus_unactive"
             app:ctlv_icon_progress_size="@dimen/margin_28dp"
-            app:ctlv_image_lvl_size="@dimen/margin_40dp"
+            app:ctlv_image_lvl_size="@dimen/margin_52dp"
             app:ctlv_margin_horizontal_image="@dimen/margin_16dp"
             app:ctlv_margin_horizontal_stroke="@dimen/margin_40dp"
             app:ctlv_margin_horizontal_text="@dimen/margin_80dp"
@@ -45,6 +45,4 @@
             app:ctlv_title_size="12sp" />
 
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

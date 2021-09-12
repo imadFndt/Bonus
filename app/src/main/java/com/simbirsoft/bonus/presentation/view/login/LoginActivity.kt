@@ -35,8 +35,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         observeViewModel()
-
-        Toast.makeText(this, "Не wf! войти", Toast.LENGTH_SHORT).show()
     }
 
     private fun observeViewModel() {
