@@ -9,11 +9,12 @@ class TimelineInteractorImpl @Inject constructor(
     @MockRepository private val repository: MainRepository
 ) : TimelineInteractor {
 
-    private suspend fun getTimeLineLevelModels() = repository.getUsers()
-
-    override suspend fun getTimeLineScreenModels() = TimeLineScreenModel(
-        "1 года 4 мес",
-        1,
-        getTimeLineLevelModels().users.first().timeline
-    )
+    override suspend fun getTimeLineScreenModels() =
+        repository.getCurrentUser().let { user ->
+            TimeLineScreenModel(
+                user.timework,
+                user.countBonus,
+                user.timeline
+            )
+        }
 }
