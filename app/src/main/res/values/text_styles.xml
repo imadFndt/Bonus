@@ -23,6 +23,9 @@
     <style name="TextStyle.Size16.Medium">
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+    <style name="TextStyle.Size16.Medium.Grey">
+        <item name="android:textColor">@color/greyTextColor</item>
+    </style>
 
     <style name="TextStyle.Size18">
         <item name="android:textSize">18sp</item>

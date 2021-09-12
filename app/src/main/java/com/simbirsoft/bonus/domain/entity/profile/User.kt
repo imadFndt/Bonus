@@ -9,7 +9,7 @@ data class User(
     @SerializedName("mail")
     val mail: String,
     @SerializedName("pass")
-    val pass: Int,
+    val pass: String,
     @SerializedName("birthday")
     val birthday: String,
     @SerializedName("startwork")

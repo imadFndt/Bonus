@@ -23,6 +23,7 @@
 
     <string name="profile_about">Обо мне</string>
     <string name="profile_achievements">Достижения</string>
+    <string name="profile_joined_from">с %s</string>
 
     <plurals name="tasks_text">
         <item quantity="one">%1$d задание</item>
