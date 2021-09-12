@@ -9,7 +9,6 @@ import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.domain.mapper.Mapper
 import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
-import com.simbirsoft.bonus.presentation.viewmodel.bonuses.layerDrawable
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -19,17 +18,13 @@ class BonusItemMapper @Inject constructor(
 
     override fun map(from: Bonus): BonusItem {
         return BonusItem(
-            icon = from.icon(),
+            icon = from.firstLayer(),
+            emoji = from.emoji(),
             title = from.title,
             description = from.description(),
             additionalInfo = from.add,
         )
     }
-
-    private fun Bonus.icon(): Drawable = layerDrawable(
-        firstLayer(),
-//        secondLayer()
-    )
 
     private fun Bonus.firstLayer(): Drawable {
         val drawable = ContextCompat.getDrawable(
@@ -45,11 +40,6 @@ class BonusItemMapper @Inject constructor(
         return drawable
     }
 
-    private fun Bonus.secondLayer(): Drawable {
-        val resId = R.drawable.ic_progress_timeline
-        return ContextCompat.getDrawable(context, resId) ?: error("Drawable not found")
-    }
-
     private fun Bonus.description(): String {
         return add?.let {
             context.resources.getQuantityString(
@@ -58,5 +48,35 @@ class BonusItemMapper @Inject constructor(
                 it.size,
             )
         }.orEmpty()
+    }
+
+    private fun Bonus.emoji(): String {
+        val unicode = when (title) {
+            // мерч
+            "Welcome Box" -> Emoji.WelcomeBox
+            "Футболка" -> Emoji.TShirt
+            "Книга" -> Emoji.Book
+            "Power Bank" -> Emoji.PowerBank
+            "Кофта" -> Emoji.Kofta
+            "Ежедневник" -> Emoji.Notebook
+            "Рюкзак" -> Emoji.Backpack
+            "Кружка" -> Emoji.Cup
+            // активности
+            "Выступление на конференции" -> Emoji.Conference
+            "Менторство" -> Emoji.Teacher
+            "Выступление в компании" -> Emoji.CompanyConference
+            "Статья для компании" -> Emoji.CompanyArticle
+            "Статья на Хабре" -> Emoji.ExternalArticle
+            "Устроиться в Симбирсофт" -> Emoji.JoinSimbirsoft
+            "Собеседование" -> Emoji.Interview
+            "Пройти испытательный срок" -> Emoji.Ispytalka
+            // бонусы
+            "Компенсация техники" -> Emoji.MoneyForTech
+            "ДМС" -> Emoji.DMS
+            "Фитнес-клуб" -> Emoji.Fitness
+            else -> Emoji.Other
+        }
+
+        return String(Character.toChars(unicode))
     }
 }

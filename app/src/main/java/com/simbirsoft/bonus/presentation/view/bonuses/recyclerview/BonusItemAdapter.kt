@@ -43,6 +43,7 @@ class BonusItemViewHolder(
             itemTitleTextView.text = item.title
             itemDescriptionTextView.text = item.description
             itemIcon.setImageDrawable(item.icon)
+            emojiTextView.text = item.emoji
             root.transitionName = item.title.toString() + item.description.toString()
             root.setOnClickListener {
                 onItemPressed(item, root)
