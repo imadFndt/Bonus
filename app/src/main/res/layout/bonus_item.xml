@@ -24,6 +24,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/emojiTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextStyle.Size26"
+            app:layout_constraintBottom_toBottomOf="@id/itemIcon"
+            app:layout_constraintEnd_toEndOf="@id/itemIcon"
+            app:layout_constraintStart_toStartOf="@id/itemIcon"
+            app:layout_constraintTop_toTopOf="@id/itemIcon"
+            tools:text="0x1F4E6"/>
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/itemTitleTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
