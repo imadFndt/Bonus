@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentProfileBinding
 import com.simbirsoft.bonus.domain.entity.profile.Profile
 import com.simbirsoft.bonus.presentation.view.profile.list.ProfileAdapter
@@ -51,8 +52,10 @@ class ProfileFragment : Fragment() {
         adapter.submitList(profile.achievements)
 
         profileName.text = profile.name
-        profileAboutContent.text = profile.about
         profileDepartment.text = profile.department
+        profileCityText.text = profile.city
+        profileStartDateText.text = resources.getString(R.string.profile_joined_from, profile.joinDate)
+        profileClothesSize.text = profile.size.toString()
         profileChips.setStatus(profile.status)
     }
 
@@ -63,6 +66,7 @@ class ProfileFragment : Fragment() {
                 Chip(context).apply {
                     text = status
                     isEnabled = false
+                    setTextAppearance(R.style.TextStyle_Size14_Medium)
                 }
             )
         }
