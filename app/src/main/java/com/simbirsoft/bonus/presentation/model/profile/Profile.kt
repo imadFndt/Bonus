@@ -1,9 +1,8 @@
-package com.simbirsoft.bonus.domain.entity.profile
-
+package com.simbirsoft.bonus.presentation.model.profile
 
 data class Profile(
     val name: String,
-    val status: List<String>,
+    val roles: List<String>,
     val department: String,
     val city: String,
     val joinDate: String,
@@ -11,4 +10,4 @@ data class Profile(
     val achievements: List<Achievement>,
 )
 
-data class Achievement(val type: String, val count: Int)
+data class Achievement(val type: String, val count: Int, val emoji: String)

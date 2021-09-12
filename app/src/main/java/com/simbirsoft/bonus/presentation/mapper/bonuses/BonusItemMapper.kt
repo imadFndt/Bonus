@@ -4,8 +4,8 @@ import android.content.Context
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.mapper.Mapper
-import com.simbirsoft.bonus.presentation.mapper.bonuses.Emoji.emoji
-import com.simbirsoft.bonus.presentation.mapper.bonuses.Emoji.firstLayer
+import com.simbirsoft.bonus.presentation.mapper.Emoji.emoji
+import com.simbirsoft.bonus.presentation.mapper.Emoji.firstLayer
 import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

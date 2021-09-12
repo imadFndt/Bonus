@@ -5,6 +5,8 @@ import com.simbirsoft.bonus.data.repo.MockRepositoryImpl
 import com.simbirsoft.bonus.data.state.Preferences
 import com.simbirsoft.bonus.data.state.PreferencesImpl
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
+import com.simbirsoft.bonus.domain.entity.profile.Item
+import com.simbirsoft.bonus.domain.entity.profile.User
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractor
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractorImpl
 import com.simbirsoft.bonus.domain.interactor.login.LoginInteractor
@@ -16,7 +18,12 @@ import com.simbirsoft.bonus.domain.interactor.timeline.TimelineInteractorImpl
 import com.simbirsoft.bonus.domain.mapper.Mapper
 import com.simbirsoft.bonus.domain.repo.MainRepository
 import com.simbirsoft.bonus.presentation.mapper.bonuses.BonusItemMapper
+import com.simbirsoft.bonus.presentation.mapper.profile.AchievementsMapper
+import com.simbirsoft.bonus.presentation.mapper.profile.ProfileMapper
+import com.simbirsoft.bonus.presentation.mapper.profile.RolesMapper
 import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
+import com.simbirsoft.bonus.presentation.model.profile.Achievement
+import com.simbirsoft.bonus.presentation.model.profile.Profile
 
 import dagger.Binds
 import dagger.Module
@@ -77,4 +84,22 @@ abstract class BindsModule {
     abstract fun bonusMapper(
         mapper: BonusItemMapper
     ): Mapper<Bonus, BonusItem>
+
+    @Binds
+    @Singleton
+    abstract fun profileMapper(
+        mapper: ProfileMapper
+    ): Mapper<User, Profile>
+
+    @Binds
+    @Singleton
+    abstract fun rolesMapper(
+        mapper: RolesMapper
+    ): Mapper<User, List<String>>
+
+    @Binds
+    @Singleton
+    abstract fun achievementsMapper(
+        mapper: AchievementsMapper
+    ): Mapper<Item, Achievement>
 }

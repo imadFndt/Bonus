@@ -1,4 +1,4 @@
-package com.simbirsoft.bonus.presentation.mapper.bonuses
+package com.simbirsoft.bonus.presentation.mapper
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
+import com.simbirsoft.bonus.domain.entity.profile.Item
 
 object Emoji {
 
@@ -46,30 +47,38 @@ object Emoji {
     }
 
     fun Bonus.emoji(): String {
-        val unicode = when (title) {
+        return title.findEmoji()
+    }
+
+    fun Item.emoji(): String {
+        return name.findEmoji()
+    }
+
+    private fun String.findEmoji(): String {
+        val unicode = when (this) {
             // мерч
-            "Welcome Box" -> Emoji.WelcomeBox
-            "Футболка" -> Emoji.TShirt
-            "Книга" -> Emoji.Book
-            "Power Bank" -> Emoji.PowerBank
-            "Кофта" -> Emoji.Kofta
-            "Ежедневник" -> Emoji.Notebook
-            "Рюкзак" -> Emoji.Backpack
-            "Кружка" -> Emoji.Cup
+            "Welcome Box" -> WelcomeBox
+            "Футболка" -> TShirt
+            "Книга" -> Book
+            "Power Bank" -> PowerBank
+            "Кофта" -> Kofta
+            "Ежедневник" -> Notebook
+            "Рюкзак" -> Backpack
+            "Кружка" -> Cup
             // активности
-            "Выступление на конференции" -> Emoji.Conference
-            "Менторство" -> Emoji.Teacher
-            "Выступление в компании" -> Emoji.CompanyConference
-            "Статья для компании" -> Emoji.CompanyArticle
-            "Статья на Хабре" -> Emoji.ExternalArticle
-            "Устроиться в Симбирсофт" -> Emoji.JoinSimbirsoft
-            "Собеседование" -> Emoji.Interview
-            "Пройти испытательный срок" -> Emoji.Ispytalka
+            "Выступление на конференции" -> Conference
+            "Менторство" -> Teacher
+            "Выступление в компании" -> CompanyConference
+            "Статья для компании" -> CompanyArticle
+            "Статья на Хабре" -> ExternalArticle
+            "Устроиться в Симбирсофт" -> JoinSimbirsoft
+            "Собеседование" -> Interview
+            "Пройти испытательный срок" -> Ispytalka
             // бонусы
-            "Компенсация техники" -> Emoji.MoneyForTech
-            "ДМС" -> Emoji.DMS
-            "Фитнес-клуб" -> Emoji.Fitness
-            else -> Emoji.Other
+            "Компенсация техники" -> MoneyForTech
+            "ДМС" -> DMS
+            "Фитнес-клуб" -> Fitness
+            else -> Other
         }
 
         return String(Character.toChars(unicode))

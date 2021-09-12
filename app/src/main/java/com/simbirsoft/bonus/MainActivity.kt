@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -19,6 +20,7 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.transition.MaterialContainerTransform
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
+import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
@@ -35,6 +37,16 @@ class MainActivity : AppCompatActivity(), NavigationListener {
 
     private lateinit var binding: ActivityMainBinding
     private val loadingDialog by lazy { LoaderDialog() }
+    private val bottomNavigationListener: (MenuItem) -> Boolean = { item ->
+        when (item.itemId) {
+            R.id.bonuses_item -> bottomNavigationRouter.chooseFragment(BonusesFragment.TAG)
+            R.id.profile_item -> bottomNavigationRouter.chooseFragment(ProfileFragment.TAG)
+            R.id.timeline_item -> bottomNavigationRouter.chooseFragment(TimeLineFragment.TAG)
+            else -> Unit
+        }
+
+        true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +59,7 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         } ?: run {
             bottomNavigationRouter.init(
                 mapOf(
-                    BonusesFragment.TAG to { BonusesFragment.newInstance() },
+                    BonusesFragment.TAG to BonusesFragment::newInstance,
                     ProfileFragment.TAG to ProfileFragment::newInstance,
                     TimeLineFragment.TAG to TimeLineFragment::newInstance
                 ),
@@ -57,16 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         }
 
         setBottomNavigationBackground()
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.bonuses_item -> bottomNavigationRouter.chooseFragment(BonusesFragment.TAG)
-                R.id.profile_item -> bottomNavigationRouter.chooseFragment(ProfileFragment.TAG)
-                R.id.timeline_item -> bottomNavigationRouter.chooseFragment(TimeLineFragment.TAG)
-                else -> Unit
-            }
-
-            return@setOnItemSelectedListener true
-        }
+        binding.bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -99,7 +102,14 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         super.onBackPressed()
     }
 
-    override fun replaceFragment(view: View, fragment: Fragment) {
+    override fun chooseBonus(type: BonusType) {
+        binding.bottomNavigationView.setOnItemSelectedListener(null)
+        bottomNavigationRouter.chooseBonus(BonusesFragment.TAG, type)
+        binding.bottomNavigationView.selectedItemId = R.id.bonuses_item
+        binding.bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener)
+    }
+
+    override fun replaceFragmentWithAnimation(view: View, fragment: Fragment) {
         supportFragmentManager.commit {
             fragment.apply {
                 sharedElementEnterTransition = MaterialContainerTransform()
