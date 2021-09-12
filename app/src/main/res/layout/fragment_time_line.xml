@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/margin_68dp"
         app:description="@string/timeline_toolbar_description"
-        app:icon="@drawable/ic_active_achievement"
+        app:icon="@drawable/ic_bonus_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

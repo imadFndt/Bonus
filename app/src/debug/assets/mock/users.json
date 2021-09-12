@@ -182,7 +182,7 @@
       "pass": "123456",
       "birthday": "05.12.1989",
       "startwork": "12.07.2020",
-      "countBonus": 0,
+      "countBonus": 1,
       "timework": "1 год и 2 месяца",
       "yearsAtCompany": 1,
       "size": 50,
@@ -267,7 +267,7 @@
           "title": "Рюкзак",
           "description": "3 задания",
           "icon": "BACKPACK",
-          "count": 23,
+          "count": 15,
           "maxCount": 25
         },
         {
