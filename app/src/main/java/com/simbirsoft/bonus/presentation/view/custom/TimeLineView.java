@@ -27,6 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeLineView extends View {
+
+    public static final String HOODIE = "HOODIE";
+    public static final String SHIRT = "SHIRT";
+    public static final String BONUS = "BONUS";
+    public static final String BACKPACK = "BACKPACK";
+    public static final String POWERBANK = "POWERBANK";
+    public static final String BOX = "BOX";
+
     private Path pathEnable;
     private Path pathDisable;
     private Paint pLine;
@@ -356,22 +364,22 @@ public class TimeLineView extends View {
         int iconRes;
 
         switch (icon) {
-            case "HOODIE":
+            case HOODIE:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "T-SHIRT":
+            case SHIRT:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "BONUS":
+            case BONUS:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "BACKPACK":
+            case BACKPACK:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "POWERBANK":
+            case POWERBANK:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
-            case "BOX":
+            case BOX:
                 iconRes = R.drawable.ic_active_achievement;
                 break;
             default:
