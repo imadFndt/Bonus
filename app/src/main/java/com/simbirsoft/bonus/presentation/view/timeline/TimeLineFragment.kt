@@ -10,7 +10,6 @@ import com.simbirsoft.bonus.databinding.FragmentTimeLineBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.domain.entity.timeline.TimeLineScreenModel
 import com.simbirsoft.bonus.presentation.navigationListener
-import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.viewmodel.timeline.TimeLineViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,7 +42,7 @@ class TimeLineFragment : Fragment() {
         binding.toolbar.title = model.title
         binding.toolbar.isIconVisible = model.countBonus != COUNT_BONUS_NULL
         binding.toolbar.onIconPressedListener = {
-            navigationListener?.replaceFragment(requireView(), BonusesFragment.newInstance(BonusType.BONUS))
+            navigationListener?.chooseBonus(BonusType.BONUS)
         }
     }
 

@@ -26,7 +26,7 @@
     <string name="profile_joined_from">с %s</string>
 
     <string name="incorrect_years_at_company_text">Годовой бонус могут получить только сотрудники после 1 года в компании</string>
-    <string name="incorrect_available_bonuses_text">Вы уже выбирали годовой бонус в этом году</string>
+    <string name="incorrect_available_bonuses_text">TimeLineFragment</string>
     <string name="bonus_request_sent_text">Отправьте заявку на бонус!</string>
     <string name="error_text">Произошла ошибка!</string>
 
