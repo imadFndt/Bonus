@@ -1,6 +1,9 @@
 package com.simbirsoft.bonus.presentation.view.login
 
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
+import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +23,11 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+        val transition = Slide().apply {
+            slideEdge = Gravity.BOTTOM
+        }
+        window.enterTransition = transition
 
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
