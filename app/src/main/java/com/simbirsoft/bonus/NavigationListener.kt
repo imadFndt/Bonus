@@ -19,4 +19,6 @@ interface NavigationListener {
     fun hideLoader()
 
     fun showPopUpWindow()
+
+    fun setBackgroundTimeLineColor(color: Int)
 }

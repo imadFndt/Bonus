@@ -55,13 +55,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/congratulations" />
 
-    <Button
+    <com.simbirsoft.bonus.presentation.view.custom.ButtonView
         android:id="@+id/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/margin_52dp"
         android:layout_marginBottom="24dp"
         android:background="@color/bottom_bar_active_color"
-        android:text="@string/want_this_bonus_text"
+        app:buttonTitle="@string/want_this_bonus_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -136,7 +136,7 @@
           "title": "Powerbank",
           "description": "Лучший вопрос",
           "icon": "POWERBANK",
-          "count": 12,
+          "count": 9,
           "maxCount": 15
         },
         {
@@ -357,7 +357,7 @@
           "title": "Powerbank",
           "description": "Лучший вопрос",
           "icon": "POWERBANK",
-          "count": 0,
+          "count": 10,
           "maxCount": 20
         },
         {

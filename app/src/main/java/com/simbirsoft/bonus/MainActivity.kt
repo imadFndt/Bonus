@@ -1,5 +1,6 @@
 package com.simbirsoft.bonus
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
+import com.simbirsoft.bonus.presentation.view.custom.ButtonView
 import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
 import com.simbirsoft.bonus.presentation.view.timeline.TimeLineFragment
@@ -138,6 +140,11 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         shapeDrawable.fillColor = color
     }
 
+    @SuppressLint("ResourceAsColor")
+    override fun setBackgroundTimeLineColor(color: Int){
+        binding.root.setBackgroundColor(R.color.colorPrimary)
+    }
+
     override fun showPopUpWindow() {
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val popupView = inflater.inflate(R.layout.popup_new_bonus, null)
@@ -150,9 +157,12 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         )
 
         popupWindow.showAtLocation(findViewById(R.id.rootView), Gravity.CENTER, 0, 0)
-        popupView.findViewById<Button>(R.id.done).setOnClickListener {
-            popupWindow.dismiss()
-            chooseBonus(BonusType.BONUS)
+        popupView.findViewById<ButtonView>(R.id.done)?.apply {
+            isEnabled = true
+            setOnClickListener {
+                popupWindow.dismiss()
+                chooseBonus(BonusType.BONUS)
+            }
         }
     }
 
