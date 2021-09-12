@@ -98,10 +98,10 @@ public class TimeLineView extends View {
         radius = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_radius_size, 0);
         stepYFirst = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_step_y_first_size, 0);
 
-        colorProgress = typedArray.getColor(R.styleable.TimeLineView_ctlv_progress_color, getResources().getColor(R.color.colorPrimary));
-        colorStroke = typedArray.getColor(R.styleable.TimeLineView_ctlv_stroke_color, getResources().getColor(R.color.colorAccent));
-        colorTitle = typedArray.getColor(R.styleable.TimeLineView_ctlv_title_color, getResources().getColor(R.color.secondaryTextColor));
-        colorDescription = typedArray.getColor(R.styleable.TimeLineView_ctlv_description_color, getResources().getColor(R.color.secondaryTextColor));
+        colorProgress = typedArray.getColor(R.styleable.TimeLineView_ctlv_progress_color, getResources().getColor(R.color.static_white_color));
+        colorStroke = typedArray.getColor(R.styleable.TimeLineView_ctlv_stroke_color, getResources().getColor(R.color.deepGrey));
+        colorTitle = typedArray.getColor(R.styleable.TimeLineView_ctlv_title_color, getResources().getColor(R.color.static_white_color));
+        colorDescription = typedArray.getColor(R.styleable.TimeLineView_ctlv_description_color, getResources().getColor(R.color.transparent_white_color));
 
         marginTopDescription = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_margin_top_description, 125);
         marginTopTitle = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_margin_top_title, 125);
@@ -377,10 +377,10 @@ public class TimeLineView extends View {
                 iconRes = R.drawable.ic_active_achievement;
                 break;
             case POWERBANK:
-                iconRes = R.drawable.ic_active_achievement;
+                iconRes = R.drawable.ic_powerbank_active;
                 break;
             case BOX:
-                iconRes = R.drawable.ic_active_achievement;
+                iconRes = R.drawable.ic_box_active;
                 break;
             default:
                 iconRes = R.drawable.ic_active_achievement;
