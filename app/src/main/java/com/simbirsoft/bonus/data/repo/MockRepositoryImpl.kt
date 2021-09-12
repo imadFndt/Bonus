@@ -2,7 +2,9 @@ package com.simbirsoft.bonus.data.repo
 
 import android.content.Context
 import com.google.gson.Gson
+import com.simbirsoft.bonus.data.entity.UserToken
 import com.simbirsoft.bonus.data.ext.fromJson
+import com.simbirsoft.bonus.data.state.Preferences
 import com.simbirsoft.bonus.domain.entity.bonuses.AllBonuses
 import com.simbirsoft.bonus.domain.entity.profile.AllUsers
 import com.simbirsoft.bonus.domain.entity.profile.User
@@ -13,6 +15,7 @@ import javax.inject.Inject
 class MockRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
     private val gson: Gson,
+    private val preferences: Preferences,
 ) : MainRepository {
 
     private companion object {
@@ -23,7 +26,6 @@ class MockRepositoryImpl @Inject constructor(
 
     private var bonuses: AllBonuses? = null
     private var users: AllUsers? = null
-    private var currentUser: User? = null
 
     override suspend fun getBonuses(): AllBonuses {
         if (bonuses != null) {
@@ -42,14 +44,27 @@ class MockRepositoryImpl @Inject constructor(
     }
 
     override suspend fun login(login: String, password: String) {
-        getUsers().users.find { user ->
-            user.mail.takeWhile { it != '@' } == login && password == user.pass
-        }?.let {
-            currentUser = it
-        } ?: throw IllegalStateException("Login failed")
+        getUsers().users.find(findUserCondition(login, password))
+            ?.let {
+
+                preferences.setToken(UserToken(login, password))
+
+            } ?: throw IllegalStateException("Login failed")
     }
 
-    override suspend fun getCurrentUser(): User {
-        return currentUser ?: throw IllegalStateException("No login")
+    override suspend fun getCurrentUser(): User? {
+        val token = preferences.token ?: return null
+
+        val users = getUsers().users
+        return users.find(findUserCondition(token.login, token.password))
+            ?: run {
+
+                preferences.setToken(null)
+                throw IllegalStateException("Token expired")
+            }
+    }
+
+    private fun findUserCondition(login: String, password: String): (User) -> Boolean = { user ->
+        user.mail.takeWhile { it != '@' } == login && password == user.pass
     }
 }
