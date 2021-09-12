@@ -40,22 +40,6 @@ class LoginViewModel @Inject constructor(
             validateLoginButton()
         }
 
-    init {
-        viewModelScope.launch {
-
-
-            load {
-
-                loginStateData.value = if (loginInteractor.findSavedUser() != null) {
-                    LoginState.Success
-                } else {
-                    LoginState.Init
-                }
-            }
-        }
-    }
-
-
     fun performLogin() {
         viewModelScope.launch {
             load {

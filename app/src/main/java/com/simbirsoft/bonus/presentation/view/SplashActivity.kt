@@ -1,18 +1,23 @@
 package com.simbirsoft.bonus.presentation.view
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.transition.Fade
 import android.view.Window
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.simbirsoft.bonus.MainActivity
 import com.simbirsoft.bonus.databinding.ActivitySplashBinding
 import com.simbirsoft.bonus.presentation.view.login.LoginActivity
+import com.simbirsoft.bonus.presentation.viewmodel.splash.SplashState
+import com.simbirsoft.bonus.presentation.viewmodel.splash.SplashViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     companion object {
@@ -20,6 +25,8 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivitySplashBinding
+
+    private val viewModel by viewModels<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
@@ -31,11 +38,19 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            val options = ActivityOptions.makeSceneTransitionAnimation(this)
-            startActivity(intent, options.toBundle())
-            finish()
-        }, DELAY)
+        viewModel.delay.observe(this) { state ->
+            when (state) {
+                SplashState.Init -> viewModel.tryLogin()
+                SplashState.LoginSuccess -> toNextScreen<MainActivity>()
+                SplashState.LoginFailure -> toNextScreen<LoginActivity>()
+            }
+        }
+    }
+
+    private inline fun <reified T : Activity> toNextScreen() {
+        val intent = Intent(this, T::class.java)
+        val options = ActivityOptions.makeSceneTransitionAnimation(this)
+        startActivity(intent, options.toBundle())
+        finish()
     }
 }
