@@ -12,6 +12,8 @@ import com.simbirsoft.bonus.databinding.FragmentBonusDetailBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusInfo
 import com.simbirsoft.bonus.domain.ext.sendEmail
+import com.simbirsoft.bonus.presentation.mapper.bonuses.Emoji.emoji
+import com.simbirsoft.bonus.presentation.mapper.bonuses.Emoji.firstLayer
 import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.viewmodel.bonuses.BonusDetailViewModel
 import com.simbirsoft.bonus.util.observeEvent
@@ -55,6 +57,8 @@ class BonusDetailFragment : Fragment() {
         binding.toolbar.onBackPressedListener = {
             activity?.onBackPressed()
         }
+        binding.itemIcon.setImageDrawable(item.firstLayer(requireContext()))
+        binding.emojiTextView.text = item.emoji()
         binding.bonusTitleTextView.text = item.title
         binding.bonusDescriptionTextView.text = item.description
 
