@@ -24,6 +24,10 @@
     <string name="profile_about">Обо мне</string>
     <string name="profile_achievements">Достижения</string>
     <string name="profile_joined_from">с %s</string>
+    <string name="profile_city">Город</string>
+    <string name="profile_in_company">В компании</string>
+    <string name="profile_size">Размер</string>
+    <string name="profile_roles">Роли в компании</string>
 
     <plurals name="tasks_text">
         <item quantity="one">%1$d задание</item>

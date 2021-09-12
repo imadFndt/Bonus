@@ -10,130 +10,184 @@
         android:layout_height="wrap_content">
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profileAvatarCard"
-            android:layout_width="@dimen/margin_64dp"
-            android:layout_height="@dimen/margin_64dp"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginTop="@dimen/margin_24dp"
-            app:cardCornerRadius="@dimen/margin_32dp"
-            app:layout_constraintStart_toStartOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="176dp"
+            android:background="@drawable/toolbar_profile_background"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/profileAvatar"
-                android:layout_width="@dimen/margin_40dp"
-                android:layout_height="@dimen/margin_40dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_cool" />
-        </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/profileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginTop="@dimen/margin_24dp"
+                android:textAppearance="@style/TextStyle.Size26.Medium"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Иван Иванов" />
+
+            <FrameLayout
+                android:id="@+id/profileAvatarContainer"
+                android:layout_width="@dimen/margin_64dp"
+                android:layout_height="@dimen/margin_64dp"
+                android:layout_marginVertical="@dimen/margin_24dp"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:background="@drawable/toolbar_avatar_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profileName">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileAvatar"
+                    android:layout_width="@dimen/margin_40dp"
+                    android:layout_height="@dimen/margin_40dp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    app:srcCompat="@drawable/ic_cool" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/profileStartDateContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:textAppearance="@style/TextStyle.Size16"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/profileStartDateText"
+                app:layout_constraintStart_toEndOf="@id/profileAvatarContainer"
+                app:layout_constraintTop_toTopOf="@id/profileAvatarContainer"
+                tools:text="c 20.04.2019" />
+
+            <TextView
+                android:id="@+id/profileStartDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:text="@string/profile_in_company"
+                android:textAppearance="@style/TextStyle.Size14"
+                android:textColor="@color/transparentWhite"
+                app:layout_constraintBottom_toBottomOf="@id/profileAvatarContainer"
+                app:layout_constraintStart_toEndOf="@id/profileAvatarContainer"
+                app:layout_constraintTop_toBottomOf="@id/profileStartDateContent" />
+
+            <TextView
+                android:id="@+id/profileCityContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:textAppearance="@style/TextStyle.Size16.Medium"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/profileCityText"
+                app:layout_constraintStart_toEndOf="@id/profileStartDateContent"
+                app:layout_constraintTop_toTopOf="@id/profileAvatarContainer"
+                tools:text="Ульяновск" />
+
+            <TextView
+                android:id="@+id/profileCityText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:text="@string/profile_city"
+                android:textAppearance="@style/TextStyle.Size14"
+                android:textColor="@color/transparentWhite"
+                app:layout_constraintBottom_toBottomOf="@id/profileAvatarContainer"
+                app:layout_constraintStart_toEndOf="@id/profileStartDateContent"
+                app:layout_constraintTop_toBottomOf="@id/profileCityContent" />
+
+            <TextView
+                android:id="@+id/profileSizeContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:textAppearance="@style/TextStyle.Size16"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/profileCityText"
+                app:layout_constraintStart_toEndOf="@id/profileCityContent"
+                app:layout_constraintTop_toTopOf="@id/profileAvatarContainer"
+                tools:text="46" />
+
+            <TextView
+                android:id="@+id/profileSizeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:text="@string/profile_size"
+                android:textAppearance="@style/TextStyle.Size14"
+                android:textColor="@color/transparentWhite"
+                app:layout_constraintBottom_toBottomOf="@id/profileAvatarContainer"
+                app:layout_constraintStart_toEndOf="@id/profileCityContent"
+                app:layout_constraintTop_toBottomOf="@id/profileCityContent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/profileName"
+            android:id="@+id/profileRolesTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_24dp"
-            android:textAppearance="@style/TextStyle.Size20.Medium"
-            app:layout_constraintStart_toEndOf="@id/profileAvatarCard"
-            app:layout_constraintTop_toTopOf="@id/profileAvatarCard"
-            tools:text="Иван Иванов" />
-
-        <TextView
-            android:id="@+id/profileDepartment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_24dp"
-            android:layout_marginTop="@dimen/margin_4dp"
-            android:textAppearance="@style/TextStyle.Size14"
-            app:layout_constraintStart_toEndOf="@id/profileAvatarCard"
-            app:layout_constraintTop_toBottomOf="@id/profileName"
-            tools:text="Mobile Android" />
-
-        <ImageView
-            android:id="@+id/profileEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@id/profileName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/profileAvatarCard"
-            app:srcCompat="@drawable/ic_edit"
-            tools:ignore="ContentDescription" />
-
-        <HorizontalScrollView
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_32dp"
+            android:text="@string/profile_roles"
+            android:textAppearance="@style/TextStyle.Size20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileToolbar" />
+
+        <HorizontalScrollView
+            android:id="@+id/profileChipsScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/margin_12dp"
             android:clipToPadding="false"
-            android:paddingEnd="8dp"
+            android:overScrollMode="never"
             android:scrollbarSize="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/profileAvatarCard"
-            app:layout_constraintTop_toBottomOf="@id/profileDepartment"
-            tools:ignore="RtlSymmetry">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileRolesTitle">
 
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/profileChips"
                 android:layout_width="wrap_content"
+                android:paddingHorizontal="@dimen/margin_12dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                app:singleLine="true" />
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/profile_chip_color"
+                    android:text="Мобайл андроид"
+                    android:textAppearance="@style/TextStyle.Size16" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/profile_chip_color"
+                    android:text="Мобайл андроид"
+                    android:textAppearance="@style/TextStyle.Size16" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/profile_chip_color"
+                    android:text="Мобайл андроид"
+                    android:textAppearance="@style/TextStyle.Size16" />
+            </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
-
-        <TextView
-            android:id="@+id/profileCityText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginTop="@dimen/margin_64dp"
-            android:drawablePadding="@dimen/margin_8dp"
-            android:textAppearance="@style/TextStyle.Size16.Medium.Grey"
-            app:drawableStartCompat="@drawable/ic_city"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileAvatarCard"
-            tools:text="Ульяновск" />
-
-        <TextView
-            android:id="@+id/profileStartDateText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_64dp"
-            android:drawablePadding="@dimen/margin_8dp"
-            android:textAppearance="@style/TextStyle.Size16.Medium.Grey"
-            app:drawableStartCompat="@drawable/ic_rocket"
-            app:layout_constraintEnd_toStartOf="@id/profileClothesSize"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/profileCityText"
-            app:layout_constraintTop_toBottomOf="@id/profileAvatarCard"
-            tools:text="c 20.04.2019" />
-
-        <TextView
-            android:id="@+id/profileClothesSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_64dp"
-            android:layout_marginEnd="@dimen/margin_24dp"
-            android:drawablePadding="@dimen/margin_8dp"
-            android:textAppearance="@style/TextStyle.Size16.Medium.Grey"
-            app:drawableStartCompat="@drawable/ic_clothes_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileAvatarCard"
-            tools:text="46" />
 
         <TextView
             android:id="@+id/profileAchievementsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginTop="@dimen/margin_32dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             android:text="@string/profile_achievements"
-            android:textAppearance="@style/TextStyle.Size20.Medium"
+            android:textAppearance="@style/TextStyle.Size20"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileCityText" />
+            app:layout_constraintTop_toBottomOf="@id/profileChipsScrollView" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/profileAchievementsList"
