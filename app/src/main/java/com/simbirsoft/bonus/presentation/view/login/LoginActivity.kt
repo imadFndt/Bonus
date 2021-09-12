@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
     private fun handleLogin(loginState: LoginState?) {
         loginState ?: return
         when (loginState) {
-            LoginState.Init -> Unit
+            LoginState.Init -> hideLoading()
             LoginState.Loading -> showLoading()
             LoginState.Failure -> showFailure()
             LoginState.Success -> showSuccess()
@@ -71,5 +71,9 @@ class LoginActivity : AppCompatActivity() {
         loadingDialog.dismiss()
         startActivity(MainActivity.newInstance(this))
         finish()
+    }
+
+    private fun hideLoading() {
+        loadingDialog.dismiss()
     }
 }

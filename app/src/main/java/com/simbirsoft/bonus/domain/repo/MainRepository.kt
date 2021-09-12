@@ -12,5 +12,5 @@ interface MainRepository {
 
     suspend fun login(login: String, password: String)
 
-    suspend fun getCurrentUser(): User
+    suspend fun getCurrentUser(): User?
 }
