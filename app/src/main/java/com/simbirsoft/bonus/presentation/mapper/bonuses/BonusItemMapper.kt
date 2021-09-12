@@ -53,28 +53,28 @@ class BonusItemMapper @Inject constructor(
     private fun Bonus.emoji(): String {
         val unicode = when (title) {
             // мерч
-            "Welcome Box" -> 0x1F4E6
-            "Футболка" -> 0x1F455
-            "Книга" -> 0x1F4D5
-            "Power Bank" -> 0x1F50B
-            "Кофта" -> 0x1F9E5
-            "Ежедневник" -> 0x1F4D2
-            "Рюкзак" -> 0x1F392
-            "Кружка" -> 0x2615
+            "Welcome Box" -> Emoji.WelcomeBox
+            "Футболка" -> Emoji.TShirt
+            "Книга" -> Emoji.Book
+            "Power Bank" -> Emoji.PowerBank
+            "Кофта" -> Emoji.Kofta
+            "Ежедневник" -> Emoji.Notebook
+            "Рюкзак" -> Emoji.Backpack
+            "Кружка" -> Emoji.Cup
             // активности
-            "Выступление на конференции" -> 0x1F399
-            "Менторство" -> 0x1F469
-            "Выступление в компании" -> 0x1F483
-            "Статья для компании" -> 0x1F4C3
-            "Статья на Хабре" -> 0x1F4F0
-            "Устроиться в Симбирсофт" -> 0x1F973
-            "Собеседование" -> 0x2705
-            "Пройти испытательный срок" -> 0x1F525
+            "Выступление на конференции" -> Emoji.Conference
+            "Менторство" -> Emoji.Teacher
+            "Выступление в компании" -> Emoji.CompanyConference
+            "Статья для компании" -> Emoji.CompanyArticle
+            "Статья на Хабре" -> Emoji.ExternalArticle
+            "Устроиться в Симбирсофт" -> Emoji.JoinSimbirsoft
+            "Собеседование" -> Emoji.Interview
+            "Пройти испытательный срок" -> Emoji.Ispytalka
             // бонусы
-            "Компенсация техники" -> 0x1F4BB
-            "ДМС" -> 0x1F48A
-            "Фитнес-клуб" -> 0x1F4AA
-            else -> 0x1F60A
+            "Компенсация техники" -> Emoji.MoneyForTech
+            "ДМС" -> Emoji.DMS
+            "Фитнес-клуб" -> Emoji.Fitness
+            else -> Emoji.Other
         }
 
         return String(Character.toChars(unicode))
