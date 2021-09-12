@@ -79,7 +79,11 @@ class BonusDetailFragment : Fragment() {
             requireContext().sendEmail(
                 email = EMAIL_DEFAULT,
                 chooserTitle = resources.getString(R.string.want_this_bonus_text),
-                body = info.emailText + viewModel.bonus?.title.orEmpty()
+                body = buildString {
+                    append(info.emailText)
+                    append(" ")
+                    append(viewModel.bonus?.title.orEmpty())
+                }
             )
             Toasty.success(requireContext(), info.errorText, Toast.LENGTH_SHORT, true).show()
         } else {
