@@ -2,6 +2,8 @@ package com.simbirsoft.bonus.di
 
 import com.simbirsoft.bonus.data.repo.MainRepositoryImpl
 import com.simbirsoft.bonus.data.repo.MockRepositoryImpl
+import com.simbirsoft.bonus.data.state.Preferences
+import com.simbirsoft.bonus.data.state.PreferencesImpl
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractor
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractorImpl
 import com.simbirsoft.bonus.domain.interactor.login.LoginInteractor
@@ -59,4 +61,10 @@ abstract class BindsModule {
     abstract fun timelineInteractor(
         repo: TimelineInteractorImpl
     ): TimelineInteractor
+
+    @Binds
+    @Singleton
+    abstract fun preferences(
+        preferences: PreferencesImpl
+    ): Preferences
 }
