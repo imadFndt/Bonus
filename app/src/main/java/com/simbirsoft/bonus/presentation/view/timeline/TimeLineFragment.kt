@@ -41,8 +41,11 @@ class TimeLineFragment : Fragment() {
         binding.timeline.replaceLvls(model.lvls)
         binding.toolbar.title = model.title
         binding.toolbar.isIconVisible = model.countBonus != COUNT_BONUS_NULL
-        binding.toolbar.onIconPressedListener = {
-            navigationListener?.chooseBonus(BonusType.BONUS)
+        if (model.countBonus != COUNT_BONUS_NULL) {
+            binding.toolbar.isIconVisible = true
+            binding.toolbar.onIconPressedListener = {
+                navigationListener?.showPopUpWindow()
+            }
         }
     }
 

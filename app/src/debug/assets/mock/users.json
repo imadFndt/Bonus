@@ -63,7 +63,7 @@
         },
         {
           "title": "1 год в SimbirSoft!",
-          "description": "Поздравляем!",
+          "description": "Coming Soon",
           "icon": "BONUS",
           "count": 0,
           "maxCount": 30
@@ -155,7 +155,7 @@
         },
         {
           "title": "1 год в SimbirSoft!",
-          "description": "Поздравляем!",
+          "description": "Coming Soon",
           "icon": "BONUS",
           "count": 0,
           "maxCount": 30
@@ -178,7 +178,7 @@
     },
     {
       "name": "Панкратов Виктор",
-      "mail": "viktor.pankranov@simbirsoft.com",
+      "mail": "viktor.pankratov@simbirsoft.com",
       "pass": "123456",
       "birthday": "05.12.1989",
       "startwork": "12.07.2020",
@@ -267,7 +267,7 @@
           "title": "Рюкзак",
           "description": "3 задания",
           "icon": "BACKPACK",
-          "count": 23,
+          "count": 15,
           "maxCount": 25
         },
         {
