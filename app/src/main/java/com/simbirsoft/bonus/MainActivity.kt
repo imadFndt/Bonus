@@ -3,8 +3,13 @@ package com.simbirsoft.bonus
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -16,6 +21,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.transition.MaterialContainerTransform
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
+import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
@@ -123,12 +129,31 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         val color = ContextCompat.getColorStateList(this, R.color.colorPrimary)
 
         val radius = resources.getDimension(R.dimen.margin_12dp)
-        val shapeDrawable : MaterialShapeDrawable = binding.bottomNavigationView.background as MaterialShapeDrawable
+        val shapeDrawable: MaterialShapeDrawable =
+            binding.bottomNavigationView.background as MaterialShapeDrawable
         shapeDrawable.shapeAppearanceModel = shapeDrawable.shapeAppearanceModel
             .toBuilder()
             .setAllCorners(CornerFamily.ROUNDED, radius)
             .build()
         shapeDrawable.fillColor = color
+    }
+
+    override fun showPopUpWindow() {
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val popupView = inflater.inflate(R.layout.popup_new_bonus, null)
+
+        val popupWindow = PopupWindow(
+            popupView,
+            resources.getDimensionPixelSize(R.dimen.margin_350dp),
+            resources.getDimensionPixelSize(R.dimen.margin_450dp),
+            true
+        )
+
+        popupWindow.showAtLocation(findViewById(R.id.rootView), Gravity.CENTER, 0, 0)
+        popupView.findViewById<Button>(R.id.done).setOnClickListener {
+            popupWindow.dismiss()
+            chooseBonus(BonusType.BONUS)
+        }
     }
 
     companion object {

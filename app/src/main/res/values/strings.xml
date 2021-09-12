@@ -29,6 +29,10 @@
     <string name="profile_size">Размер</string>
     <string name="profile_roles">Роли в компании</string>
 
+    <string name="popup_bonus_description">Тебя уже ждет новый бонус, скорее получи его.</string>
+    <string name="popup_bonus_title">1 год в SimbirSoft!</string>
+    <string name="popup_bonus_congratulations">Поздравляем!</string>
+
     <string name="incorrect_years_at_company_text">Годовой бонус могут получить только сотрудники после 1 года в компании</string>
     <string name="incorrect_available_bonuses_text">TimeLineFragment</string>
     <string name="bonus_request_sent_text">Отправьте заявку на бонус!</string>
