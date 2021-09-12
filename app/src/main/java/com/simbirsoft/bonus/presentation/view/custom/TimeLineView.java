@@ -101,7 +101,7 @@ public class TimeLineView extends View {
         colorProgress = typedArray.getColor(R.styleable.TimeLineView_ctlv_progress_color, getResources().getColor(R.color.static_white_color));
         colorStroke = typedArray.getColor(R.styleable.TimeLineView_ctlv_stroke_color, getResources().getColor(R.color.deepGrey));
         colorTitle = typedArray.getColor(R.styleable.TimeLineView_ctlv_title_color, getResources().getColor(R.color.static_white_color));
-        colorDescription = typedArray.getColor(R.styleable.TimeLineView_ctlv_description_color, getResources().getColor(R.color.transparent_white_color));
+        colorDescription = typedArray.getColor(R.styleable.TimeLineView_ctlv_description_color, getResources().getColor(R.color.static_white_color));
 
         marginTopDescription = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_margin_top_description, 125);
         marginTopTitle = typedArray.getDimensionPixelSize(R.styleable.TimeLineView_ctlv_margin_top_title, 125);
@@ -365,16 +365,11 @@ public class TimeLineView extends View {
 
         switch (icon) {
             case HOODIE:
-                iconRes = R.drawable.ic_active_achievement;
-                break;
             case SHIRT:
-                iconRes = R.drawable.ic_active_achievement;
-                break;
-            case BONUS:
-                iconRes = R.drawable.ic_active_achievement;
+                iconRes = R.drawable.ic_shirt_active;
                 break;
             case BACKPACK:
-                iconRes = R.drawable.ic_active_achievement;
+                iconRes = R.drawable.ic_backpack_active;
                 break;
             case POWERBANK:
                 iconRes = R.drawable.ic_powerbank_active;
@@ -382,8 +377,9 @@ public class TimeLineView extends View {
             case BOX:
                 iconRes = R.drawable.ic_box_active;
                 break;
+            case BONUS:
             default:
-                iconRes = R.drawable.ic_active_achievement;
+                iconRes = R.drawable.ic_bonus_active;
         }
 
         return iconRes;
