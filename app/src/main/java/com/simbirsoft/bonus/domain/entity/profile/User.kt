@@ -14,6 +14,8 @@ data class User(
     val countBonus: Int,
     @SerializedName("timework")
     val timework: String,
+    @SerializedName("yearsAtCompany")
+    val yearsAtCompany: Int,
     @SerializedName("birthday")
     val birthday: String,
     @SerializedName("startwork")

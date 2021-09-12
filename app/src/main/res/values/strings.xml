@@ -6,7 +6,7 @@
     <string name="auth_title">Авторизация</string>
     <string name="login_label">Логин</string>
     <string name="password_label">Пароль</string>
-    <string name="login_button_text">ВОЙТИ</string>
+    <string name="login_button_text">Войти</string>
 
     <string name="timeline_toolbar_description">В компании</string>
     <string name="timeline_toolbar_icon_description">Забрать</string>
@@ -28,6 +28,14 @@
     <string name="popup_bonus_description">Тебя уже ждет новый бонус, скорее получи его.</string>
     <string name="popup_bonus_title">1 год в SimbirSoft!</string>
     <string name="popup_bonus_congratulations">Поздравляем!</string>
+
+    <string name="incorrect_years_at_company_text">Годовой бонус могут получить только сотрудники после 1 года в компании</string>
+    <string name="incorrect_available_bonuses_text">Вы уже выбирали годовой бонус в этом году</string>
+    <string name="bonus_request_sent_text">Отправьте заявку на бонус!</string>
+    <string name="error_text">Произошла ошибка!</string>
+
+    <string name="login_error">Не удалось войти</string>
+    <string name="auth_needed">Введите данные для авторизации</string>
 
     <plurals name="tasks_text">
         <item quantity="one">%1$d задание</item>

@@ -26,7 +26,7 @@ class LoginViewModel @Inject constructor(
     val loginButtonState: LiveData<Boolean> get() = loginButtonStateData
 
     private val loginStateData = MutableLiveData<LoginState>()
-    private val loginButtonStateData = MutableLiveData(false) // todo поменять на false
+    private val loginButtonStateData = MutableLiveData(false)
 
     var login: String = ""
         set(value) {

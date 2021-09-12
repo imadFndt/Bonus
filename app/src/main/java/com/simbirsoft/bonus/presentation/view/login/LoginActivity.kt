@@ -1,15 +1,20 @@
 package com.simbirsoft.bonus.presentation.view.login
 
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
+import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.simbirsoft.bonus.MainActivity
+import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.ActivityAuthBinding
 import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.viewmodel.login.LoginState
 import com.simbirsoft.bonus.presentation.viewmodel.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -20,6 +25,11 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+        val transition = Slide().apply {
+            slideEdge = Gravity.BOTTOM
+        }
+        window.enterTransition = transition
 
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -63,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showFailure() {
         loadingDialog.dismiss()
         binding.passwordEditText.setText("")
-        Toast.makeText(this, "Не удалось войти", Toast.LENGTH_SHORT).show()
+        Toasty.error(this, resources.getString(com.simbirsoft.bonus.R.string.login_error), Toast.LENGTH_SHORT, true).show()
         viewModel.dismissFailure()
     }
 
@@ -74,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun hideLoading() {
+        Toasty.info(this, resources.getString(com.simbirsoft.bonus.R.string.auth_needed), Toast.LENGTH_SHORT, true).show()
         loadingDialog.dismiss()
     }
 }
