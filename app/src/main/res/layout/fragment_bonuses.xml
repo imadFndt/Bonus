@@ -9,62 +9,59 @@
     <com.simbirsoft.bonus.presentation.view.custom.ToolbarView
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="?android:attr/actionBarSize"
-        app:icon="@drawable/ic_launcher_foreground"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_help"
+        app:title="@string/bonuses_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroup"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/chipsFlow"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_16dp"
         android:layout_marginEnd="@dimen/margin_16dp"
-        app:chipSpacingHorizontal="@dimen/margin_16dp"
+        app:constraint_referenced_ids="merchChip,activitiesChip,bonusesChip"
+        app:flow_horizontalGap="@dimen/margin_16dp"
         app:flow_horizontalStyle="packed"
+        app:flow_wrapMode="chain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:singleSelection="true">
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/thingsChip"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/things_chip_text" />
+    <com.simbirsoft.bonus.presentation.view.custom.ChipItem
+        android:id="@+id/merchChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipTitle="@string/things_chip_text"
+        tools:ignore="MissingConstraints" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/activitiesChip"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/activities_chip_text" />
+    <com.simbirsoft.bonus.presentation.view.custom.ChipItem
+        android:id="@+id/activitiesChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipTitle="@string/activities_chip_text"
+        tools:ignore="MissingConstraints" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/bonusesChip"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bonuses_chip_text" />
-
-    </com.google.android.material.chip.ChipGroup>
+    <com.simbirsoft.bonus.presentation.view.custom.ChipItem
+        android:id="@+id/bonusesChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipTitle="@string/bonuses_chip_text"
+        tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/margin_12dp"
         android:layout_marginTop="@dimen/margin_16dp"
-        android:layout_marginEnd="@dimen/margin_12dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chipGroup"
+        app:layout_constraintTop_toBottomOf="@id/chipsFlow"
         app:spanCount="2"
         tools:listitem="@layout/bonus_item" />
 

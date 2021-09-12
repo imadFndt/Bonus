@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusesBinding
-import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
+import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
 import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemAdapter
 import com.simbirsoft.bonus.presentation.view.bonuses.recyclerview.BonusItemDecoration
@@ -53,22 +53,22 @@ class BonusesFragment : Fragment() {
 
         navigationListener?.setBottomNavigationBarVisibility(isVisible = true)
 
-        binding.toolbar.title = "Привет, Иван"
-
         itemsAdapter = BonusItemAdapter { item, v ->
             openItemDetails(item, v)
         }
         binding.itemsRecyclerView.apply {
             adapter = itemsAdapter
-            val spacing = resources.getDimensionPixelSize(R.dimen.margin_8dp)
+            val spacing = resources.getDimensionPixelSize(R.dimen.margin_16dp)
             addItemDecoration(BonusItemDecoration(spacing))
         }
-        binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
-            when(checkedId) {
-                R.id.thingsChip -> viewModel.changeSelectedType(BonusType.MERCH)
-                R.id.activitiesChip -> viewModel.changeSelectedType(BonusType.ACTIVITY)
-                R.id.bonusesChip -> viewModel.changeSelectedType(BonusType.BONUS)
-            }
+        binding.merchChip.onChipSelected = {
+            viewModel.changeSelectedType(BonusType.MERCH)
+        }
+        binding.activitiesChip.onChipSelected = {
+            viewModel.changeSelectedType(BonusType.ACTIVITY)
+        }
+        binding.bonusesChip.onChipSelected = {
+            viewModel.changeSelectedType(BonusType.BONUS)
         }
 
         selectDefaultTypeIfPresent()
@@ -77,24 +77,22 @@ class BonusesFragment : Fragment() {
 
     private fun selectDefaultTypeIfPresent() {
         arguments?.getParcelable<BonusType>(TYPE_ARG)?.let { type ->
-            when(type) {
-                BonusType.MERCH -> binding.thingsChip.isChecked = true
-                BonusType.ACTIVITY -> binding.activitiesChip.isChecked = true
-                BonusType.BONUS -> binding.bonusesChip.isChecked = true
-            }
+            selectChipByType(type)
             viewModel.changeSelectedType(type)
         }
     }
 
-    private fun openItemDetails(item: Bonus, view: View) {
-        navigationListener?.replaceFragment(view, BonusDetailFragment.newInstance(item))
+    private fun openItemDetails(item: BonusItem, view: View) {
+        val bonus = viewModel.getBonus(item) ?: error("Invalid item $item")
+        navigationListener?.replaceFragment(view, BonusDetailFragment.newInstance(bonus))
     }
 
     private fun observeViewModel() {
         viewModel.itemsState().observe(viewLifecycleOwner, ::renderItems)
+        viewModel.selectedTypeState().observe(viewLifecycleOwner, ::selectChipByType)
     }
 
-    private fun renderItems(items: List<Bonus>) {
+    private fun renderItems(items: List<BonusItem>) {
         val callback = BonusItemDiffUtilCallback(
             oldItems = itemsAdapter.getItems(),
             newItems = items
@@ -103,5 +101,11 @@ class BonusesFragment : Fragment() {
         itemsAdapter.swapData(items)
         diffResult.dispatchUpdatesTo(itemsAdapter)
         view?.doOnPreDraw { startPostponedEnterTransition() }
+    }
+
+    private fun selectChipByType(type: BonusType) {
+        binding.merchChip.setChipSelected(type == BonusType.MERCH)
+        binding.activitiesChip.setChipSelected(type == BonusType.ACTIVITY)
+        binding.bonusesChip.setChipSelected(type == BonusType.BONUS)
     }
 }

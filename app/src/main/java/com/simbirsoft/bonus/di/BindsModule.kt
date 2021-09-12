@@ -4,6 +4,7 @@ import com.simbirsoft.bonus.data.repo.MainRepositoryImpl
 import com.simbirsoft.bonus.data.repo.MockRepositoryImpl
 import com.simbirsoft.bonus.data.state.Preferences
 import com.simbirsoft.bonus.data.state.PreferencesImpl
+import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractor
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractorImpl
 import com.simbirsoft.bonus.domain.interactor.login.LoginInteractor
@@ -12,7 +13,10 @@ import com.simbirsoft.bonus.domain.interactor.profile.ProfileInteractor
 import com.simbirsoft.bonus.domain.interactor.profile.ProfileInteractorImpl
 import com.simbirsoft.bonus.domain.interactor.timeline.TimelineInteractor
 import com.simbirsoft.bonus.domain.interactor.timeline.TimelineInteractorImpl
+import com.simbirsoft.bonus.domain.mapper.Mapper
 import com.simbirsoft.bonus.domain.repo.MainRepository
+import com.simbirsoft.bonus.presentation.mapper.bonuses.BonusItemMapper
+import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
 
 import dagger.Binds
 import dagger.Module
@@ -55,7 +59,7 @@ abstract class BindsModule {
     abstract fun profileInteractor(
         repo: ProfileInteractorImpl
     ): ProfileInteractor
-
+  
     @Binds
     @Singleton
     abstract fun timelineInteractor(
@@ -67,4 +71,10 @@ abstract class BindsModule {
     abstract fun preferences(
         preferences: PreferencesImpl
     ): Preferences
+  
+    @Binds
+    @Singleton
+    abstract fun bonusMapper(
+        mapper: BonusItemMapper
+    ): Mapper<Bonus, BonusItem>
 }

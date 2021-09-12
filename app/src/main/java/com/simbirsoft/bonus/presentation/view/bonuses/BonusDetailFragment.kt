@@ -47,8 +47,8 @@ class BonusDetailFragment : Fragment() {
         binding.toolbar.onBackPressedListener = {
             activity?.onBackPressed()
         }
-        binding.titleTextView.text = item.title
-        binding.descriptionTextView.text = item.description
+        binding.bonusTitleTextView.text = item.title
+        binding.bonusDescriptionTextView.text = item.description
 
         binding.wantThisBonusButton.setOnClickListener {
             viewModel.onWantBonusPressed()
