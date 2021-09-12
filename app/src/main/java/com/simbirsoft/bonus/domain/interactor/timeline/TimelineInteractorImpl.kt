@@ -10,7 +10,7 @@ class TimelineInteractorImpl @Inject constructor(
 ) : TimelineInteractor {
 
     override suspend fun getTimeLineScreenModels() =
-        repository.getCurrentUser().let { user ->
+        repository.getCurrentUser()?.let { user ->
             TimeLineScreenModel(
                 user.timework,
                 user.countBonus,
