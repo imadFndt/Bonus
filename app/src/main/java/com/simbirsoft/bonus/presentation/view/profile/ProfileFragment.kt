@@ -11,7 +11,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentProfileBinding
-import com.simbirsoft.bonus.domain.entity.profile.Profile
+import com.simbirsoft.bonus.presentation.model.profile.Profile
 import com.simbirsoft.bonus.presentation.view.profile.list.ProfileAdapter
 import com.simbirsoft.bonus.presentation.viewmodel.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,11 +52,10 @@ class ProfileFragment : Fragment() {
         adapter.submitList(profile.achievements)
 
         profileName.text = profile.name
-        profileDepartment.text = profile.department
-        profileCityText.text = profile.city
-        profileStartDateText.text = resources.getString(R.string.profile_joined_from, profile.joinDate)
-        profileClothesSize.text = profile.size.toString()
-        profileChips.setStatus(profile.status)
+        profileCityContent.text = profile.city
+        profileStartDateContent.text = resources.getString(R.string.profile_joined_from, profile.joinDate)
+        profileSizeContent.text = profile.size.toString()
+        profileChips.setStatus(profile.roles)
     }
 
     private fun ChipGroup.setStatus(statuses: List<String>) {
@@ -66,6 +65,7 @@ class ProfileFragment : Fragment() {
                 Chip(context).apply {
                     text = status
                     isEnabled = false
+                    setChipBackgroundColorResource(R.color.profile_chip_color)
                     setTextAppearance(R.style.TextStyle_Size14_Medium)
                 }
             )

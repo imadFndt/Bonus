@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.ItemProfileAchievementsBinding
-import com.simbirsoft.bonus.domain.entity.profile.Achievement
+import com.simbirsoft.bonus.presentation.model.profile.Achievement
 
 class ProfileAdapter : ListAdapter<Achievement, ProfileAdapter.ProfileViewHolder>(ProfileItemDiffCallback()) {
 
@@ -28,9 +28,7 @@ class ProfileAdapter : ListAdapter<Achievement, ProfileAdapter.ProfileViewHolder
             binding.apply {
                 profileItemTitle.text = item.type
                 profileItemCount.text = item.count.toString()
-
-                //TODO
-                profileItemImage.setImageResource(R.drawable.ic_mic)
+                profileItemEmoji.text = item.emoji
             }
         }
     }
