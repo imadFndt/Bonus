@@ -8,5 +8,5 @@ data class Bonus(
     val type: BonusType,
     val title: String,
     val description: String,
-    val additionalInfo: List<String>,
+    val add: List<String>?,
 ): Parcelable

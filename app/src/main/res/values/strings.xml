@@ -24,4 +24,12 @@
     <string name="profile_about">Обо мне</string>
     <string name="profile_achievements">Достижения</string>
     <string name="profile_joined_from">с %s</string>
+
+    <plurals name="tasks_text">
+        <item quantity="one">%1$d задание</item>
+        <item quantity="two">%1$d задания</item>
+        <item quantity="few">%1$d задания</item>
+        <item quantity="many">%1$d заданий</item>
+        <item quantity="other">%1$d задания</item>
+    </plurals>
 </resources>

@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.simbirsoft.bonus.data.ext.fromJson
 import com.simbirsoft.bonus.domain.entity.bonuses.AllBonuses
 import com.simbirsoft.bonus.domain.entity.profile.AllUsers
+import com.simbirsoft.bonus.domain.entity.profile.User
 import com.simbirsoft.bonus.domain.repo.MainRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -19,8 +20,10 @@ class MockRepositoryImpl @Inject constructor(
         const val USERS_PATH = "mock/users.json"
     }
 
+
     private var bonuses: AllBonuses? = null
     private var users: AllUsers? = null
+    private var currentUser: User? = null
 
     override suspend fun getBonuses(): AllBonuses {
         if (bonuses != null) {
@@ -36,5 +39,17 @@ class MockRepositoryImpl @Inject constructor(
         }
         this.users = gson.fromJson(context, USERS_PATH)
         return requireNotNull(users)
+    }
+
+    override suspend fun login(login: String, password: String) {
+        getUsers().users.find { user ->
+            user.mail.takeWhile { it != '@' } == login && password == user.pass
+        }?.let {
+            currentUser = it
+        } ?: throw IllegalStateException("Login failed")
+    }
+
+    override suspend fun getCurrentUser(): User {
+        return currentUser ?: throw IllegalStateException("No login")
     }
 }
