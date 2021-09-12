@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.domain.interactor.bonuses.BonusesInteractor
+import com.simbirsoft.bonus.domain.mapper.Mapper
+import com.simbirsoft.bonus.domain.mapper.mapList
+import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,19 +17,34 @@ import javax.inject.Inject
 @HiltViewModel
 class BonusesViewModel @Inject constructor(
     private val interactor: BonusesInteractor,
+    private val bonusMapper: Mapper<Bonus, BonusItem>,
 ) : ViewModel() {
 
-    private var selectedType = BonusType.MERCH
-    private val itemsState = MutableLiveData<List<Bonus>>()
+    private var bonuses: List<Bonus> = emptyList()
+    private val defaultType = BonusType.MERCH
+
+    private val itemsState = MutableLiveData<List<BonusItem>>()
+    private val selectedTypeState = MutableLiveData(defaultType)
 
     init {
-        changeSelectedType(selectedType)
+        loadBonuses(defaultType)
     }
 
-    fun itemsState(): LiveData<List<Bonus>> = itemsState
+    fun itemsState(): LiveData<List<BonusItem>> = itemsState
+    fun selectedTypeState(): LiveData<BonusType> = selectedTypeState
 
     fun changeSelectedType(type: BonusType) = viewModelScope.launch {
-        selectedType = type
-        itemsState.value = interactor.getBonusesByType(type)
+        if (type == selectedTypeState.value) {
+            return@launch
+        }
+        selectedTypeState.value = type
+        loadBonuses(type)
     }
+
+    private fun loadBonuses(type: BonusType) = viewModelScope.launch {
+        bonuses = interactor.getBonusesByType(type)
+        itemsState.value = bonuses.mapList(bonusMapper)
+    }
+
+    fun getBonus(item: BonusItem) = bonuses.find { it.title == item.title }
 }

@@ -5,10 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.transition.Fade
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.transition.MaterialContainerTransform
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationListener {
             bottomNavigationRouter.chooseFragment(TimeLineFragment.TAG)
         }
 
+        setBottomNavigationBackground()
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bonuses_item -> bottomNavigationRouter.chooseFragment(BonusesFragment.TAG)
@@ -103,6 +107,18 @@ class MainActivity : AppCompatActivity(), NavigationListener {
             replace(R.id.fragmentContainer, fragment)
             addToBackStack(null)
         }
+    }
+
+    private fun setBottomNavigationBackground() {
+        val color = ContextCompat.getColorStateList(this, R.color.colorPrimary)
+
+        val radius = resources.getDimension(R.dimen.margin_12dp)
+        val shapeDrawable : MaterialShapeDrawable = binding.bottomNavigationView.background as MaterialShapeDrawable
+        shapeDrawable.shapeAppearanceModel = shapeDrawable.shapeAppearanceModel
+            .toBuilder()
+            .setAllCorners(CornerFamily.ROUNDED, radius)
+            .build()
+        shapeDrawable.fillColor = color
     }
 
     companion object {

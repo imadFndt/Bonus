@@ -1,11 +1,11 @@
 package com.simbirsoft.bonus.presentation.view.bonuses.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
-import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
+import com.simbirsoft.bonus.presentation.model.bonuses.BonusItem
 
 class BonusItemDiffUtilCallback(
-    private val oldItems: List<Bonus>,
-    private val newItems: List<Bonus>,
+    private val oldItems: List<BonusItem>,
+    private val newItems: List<BonusItem>,
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldItems.size

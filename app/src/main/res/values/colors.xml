@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF9800</color>
-    <color name="colorPrimaryDark">#F57C00</color>
+    <color name="colorPrimary">#0F284B</color>
+    <color name="colorPrimaryDark">#0F284B</color>
     <color name="colorAccent">#9E9E9E</color>
     <color name="primaryTextColor">#0F284B</color>
     <color name="secondaryTextColor">#A3A6AB</color>
@@ -9,4 +9,12 @@
 
     <color name="lightGrey">#F2F3F7</color>
     <color name="anotherGrey">#A1A4B2</color>
+    <color name="bottom_bar_inactive_color">#9FA6BB</color>
+    <color name="bottom_bar_active_color">#FFAA15</color>
+
+    <color name="chip_inactive_color">#E7E9ED</color>
+
+    <color name="merch_layer_color">#FDF2D1</color>
+    <color name="activity_layer_color">#9E9E9E</color>
+    <color name="bonus_layer_color">#D3EDF9</color>
 </resources>

@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/timeline_item"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_timeline_bottom"
         android:title="@string/timeline_text"/>
 
     <item
         android:id="@+id/bonuses_item"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_plushki_bottom"
         android:title="@string/bonuses_text"/>
 
     <item
         android:id="@+id/profile_item"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_profile_bottom"
         android:title="@string/profile_text"/>
 
 </menu>

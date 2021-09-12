@@ -35,4 +35,8 @@
         <attr name="ctlv_image_lvl_size" format="dimension" />
         <attr name="ctlv_icon_progress_size" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="ChipItem">
+        <attr name="chipTitle" format="string" />
+    </declare-styleable>
 </resources>
