@@ -50,6 +50,7 @@ class BonusDetailFragment : Fragment() {
         binding.bonusTitleTextView.text = item.title
         binding.bonusDescriptionTextView.text = item.description
 
+        binding.wantThisBonusButton.isEnabled = true
         binding.wantThisBonusButton.setOnClickListener {
             viewModel.onWantBonusPressed()
         }

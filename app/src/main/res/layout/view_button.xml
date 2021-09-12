@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/button_size"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/buttonTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="true"
+        android:textAppearance="@style/TextStyle.Size16.Medium"
+        tools:text="@tools:sample/lorem/random"
+        tools:textColor="@color/backgroundColor" />
+
+</merge>
