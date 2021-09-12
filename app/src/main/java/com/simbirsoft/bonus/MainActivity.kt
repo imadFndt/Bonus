@@ -21,6 +21,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.transition.MaterialContainerTransform
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
+import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import com.simbirsoft.bonus.presentation.view.custom.LoaderDialog
 import com.simbirsoft.bonus.presentation.view.profile.ProfileFragment
@@ -151,6 +152,7 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         popupWindow.showAtLocation(findViewById(R.id.rootView), Gravity.CENTER, 0, 0)
         popupView.findViewById<Button>(R.id.done).setOnClickListener {
             popupWindow.dismiss()
+            chooseBonus(BonusType.BONUS)
         }
     }
 

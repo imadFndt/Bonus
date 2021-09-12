@@ -44,7 +44,7 @@ class TimeLineFragment : Fragment() {
         if (model.countBonus != COUNT_BONUS_NULL) {
             binding.toolbar.isIconVisible = true
             binding.toolbar.onIconPressedListener = {
-                navigationListener?.chooseBonus(BonusType.BONUS)
+                navigationListener?.showPopUpWindow()
             }
         }
     }
