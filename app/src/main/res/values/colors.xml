@@ -20,6 +20,8 @@
     <color name="activity_layer_color">#D4F9D3</color>
     <color name="bonus_layer_color">#D3EDF9</color>
 
+    <color name="button_enabled_color">#FFAA15</color>
+    <color name="button_disabled_color">#E7E9ED</color>
 
     <color name="static_white_color">#FFFFFF</color>
     <color name="transparent_white_color">#AAFFFFFF</color>

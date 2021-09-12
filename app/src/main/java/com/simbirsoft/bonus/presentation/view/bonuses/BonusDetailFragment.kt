@@ -4,13 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusDetailBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
+import com.simbirsoft.bonus.domain.entity.bonuses.BonusInfo
+import com.simbirsoft.bonus.domain.ext.sendEmail
 import com.simbirsoft.bonus.presentation.navigationListener
 import com.simbirsoft.bonus.presentation.viewmodel.bonuses.BonusDetailViewModel
+import com.simbirsoft.bonus.util.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
+import es.dmoral.toasty.Toasty
 
 @AndroidEntryPoint
 class BonusDetailFragment : Fragment() {
@@ -18,6 +24,8 @@ class BonusDetailFragment : Fragment() {
     companion object {
         const val TAG = "BonusDetailFragment"
         const val ARGUMENT_KEY = "item"
+        const val EMAIL_DEFAULT = "artem.efimov@simbirsoft.com"
+        const val EMAIL_TITLE = "Получить бонус"
 
         fun newInstance(item: Bonus) = BonusDetailFragment().apply {
             arguments = Bundle().apply {
@@ -44,6 +52,7 @@ class BonusDetailFragment : Fragment() {
         navigationListener?.setBottomNavigationBarVisibility(isVisible = false)
 
         val item = requireArguments().getParcelable<Bonus>(ARGUMENT_KEY) ?: error("No Arg")
+        viewModel.bonus = item
         binding.toolbar.onBackPressedListener = {
             activity?.onBackPressed()
         }
@@ -53,6 +62,23 @@ class BonusDetailFragment : Fragment() {
         binding.wantThisBonusButton.isEnabled = true
         binding.wantThisBonusButton.setOnClickListener {
             viewModel.onWantBonusPressed()
+        }
+
+        viewModel.successState().observeEvent(viewLifecycleOwner) { info ->
+            renderBonusInfo(info)
+        }
+    }
+
+    private fun renderBonusInfo(info: BonusInfo) {
+        if (info.canGetBonus) {
+            requireContext().sendEmail(
+                email = EMAIL_DEFAULT,
+                chooserTitle = resources.getString(com.simbirsoft.bonus.R.string.want_this_bonus_text),
+                body = info.emailText + viewModel.bonus?.title.orEmpty()
+            )
+            Toasty.success(requireContext(), info.errorText, Toast.LENGTH_SHORT, true).show()
+        } else {
+            Toasty.info(requireContext(), info.errorText, Toast.LENGTH_SHORT, true).show()
         }
     }
 }
