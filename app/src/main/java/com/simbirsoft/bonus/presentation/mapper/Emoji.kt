@@ -40,7 +40,7 @@ object Emoji {
         val colorResId = when (type) {
             BonusType.MERCH -> R.color.merch_layer_color
             BonusType.ACTIVITY -> R.color.activity_layer_color
-            BonusType.BONUS -> com.simbirsoft.bonus.R.color.bonus_layer_color
+            BonusType.BONUS -> R.color.bonus_layer_color
         }
         drawable.color = ContextCompat.getColorStateList(context, colorResId)
         return drawable

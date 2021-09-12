@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showFailure() {
         loadingDialog.dismiss()
         binding.passwordEditText.setText("")
-        Toasty.error(this, resources.getString(com.simbirsoft.bonus.R.string.login_error), Toast.LENGTH_SHORT, true).show()
+        Toasty.error(this, resources.getString(R.string.login_error), Toast.LENGTH_SHORT, true).show()
         viewModel.dismissFailure()
     }
 
@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun hideLoading() {
-        Toasty.info(this, resources.getString(com.simbirsoft.bonus.R.string.auth_needed), Toast.LENGTH_SHORT, true).show()
+        Toasty.info(this, resources.getString(R.string.auth_needed), Toast.LENGTH_SHORT, true).show()
         loadingDialog.dismiss()
     }
 }

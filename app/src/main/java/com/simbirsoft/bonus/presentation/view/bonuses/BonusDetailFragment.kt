@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.simbirsoft.bonus.R
 import com.simbirsoft.bonus.databinding.FragmentBonusDetailBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusInfo
-import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.domain.ext.sendEmail
 import com.simbirsoft.bonus.presentation.mapper.Emoji.emoji
 import com.simbirsoft.bonus.presentation.mapper.Emoji.firstLayer
@@ -67,11 +67,7 @@ class BonusDetailFragment : Fragment() {
             viewModel.onWantBonusPressed()
         }
 
-        binding.wantThisBonusButton.title = when(item.type) {
-            BonusType.ACTIVITY -> "Участвовать"
-            BonusType.MERCH -> "Хочу получить"
-            BonusType.BONUS -> "Хочу получить"
-        }
+        binding.wantThisBonusButton.title = viewModel.getButtonTitle()
 
         viewModel.successState().observeEvent(viewLifecycleOwner) { info ->
             renderBonusInfo(info)
@@ -82,7 +78,7 @@ class BonusDetailFragment : Fragment() {
         if (info.canGetBonus) {
             requireContext().sendEmail(
                 email = EMAIL_DEFAULT,
-                chooserTitle = resources.getString(com.simbirsoft.bonus.R.string.want_this_bonus_text),
+                chooserTitle = resources.getString(R.string.want_this_bonus_text),
                 body = info.emailText + viewModel.bonus?.title.orEmpty()
             )
             Toasty.success(requireContext(), info.errorText, Toast.LENGTH_SHORT, true).show()

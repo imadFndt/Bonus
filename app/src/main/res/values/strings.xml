@@ -20,6 +20,14 @@
     <string name="bonuses_chip_text">Бонусы</string>
 
     <string name="want_this_bonus_text">Получить бонус</string>
+    <string name="want_this_merch_text">Получить</string>
+    <string name="join_activity_text">Участвовать</string>
+
+    <string name="email_body_text">Сотрудник %1$s хочет %2$s</string>
+
+    <string name="activity_text">принять участие в активности </string>
+    <string name="merch_text">получить мерч </string>
+    <string name="bonus_text">получить годовой бонус </string>
 
     <string name="profile_about">Обо мне</string>
     <string name="profile_achievements">Достижения</string>
