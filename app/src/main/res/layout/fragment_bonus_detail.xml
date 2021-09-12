@@ -84,7 +84,6 @@
                 android:layout_marginTop="@dimen/margin_16dp"
                 android:layout_marginEnd="@dimen/margin_16dp"
                 android:layout_marginBottom="@dimen/margin_16dp"
-                app:buttonTitle="@string/want_this_bonus_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

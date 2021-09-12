@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.simbirsoft.bonus.databinding.FragmentBonusDetailBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.Bonus
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusInfo
+import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
 import com.simbirsoft.bonus.domain.ext.sendEmail
 import com.simbirsoft.bonus.presentation.mapper.Emoji.emoji
 import com.simbirsoft.bonus.presentation.mapper.Emoji.firstLayer
@@ -64,6 +65,12 @@ class BonusDetailFragment : Fragment() {
         binding.wantThisBonusButton.isEnabled = true
         binding.wantThisBonusButton.setOnClickListener {
             viewModel.onWantBonusPressed()
+        }
+
+        binding.wantThisBonusButton.title = when(item.type) {
+            BonusType.ACTIVITY -> "Участвовать"
+            BonusType.MERCH -> "Хочу получить"
+            BonusType.BONUS -> "Хочу получить"
         }
 
         viewModel.successState().observeEvent(viewLifecycleOwner) { info ->
