@@ -104,22 +104,8 @@ class BonusesFragment : Fragment() {
     }
 
     private fun selectChipByType(type: BonusType) {
-        when(type) {
-            BonusType.MERCH -> {
-                binding.merchChip.setChipSelected(true)
-                binding.activitiesChip.setChipSelected(false)
-                binding.bonusesChip.setChipSelected(false)
-            }
-            BonusType.ACTIVITY -> {
-                binding.merchChip.setChipSelected(false)
-                binding.activitiesChip.setChipSelected(true)
-                binding.bonusesChip.setChipSelected(false)
-            }
-            BonusType.BONUS -> {
-                binding.merchChip.setChipSelected(false)
-                binding.activitiesChip.setChipSelected(false)
-                binding.bonusesChip.setChipSelected(true)
-            }
-        }
+        binding.merchChip.setChipSelected(type == BonusType.MERCH)
+        binding.activitiesChip.setChipSelected(type == BonusType.ACTIVITY)
+        binding.bonusesChip.setChipSelected(type == BonusType.BONUS)
     }
 }
