@@ -10,12 +10,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.transition.Fade
-import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.transition.MaterialContainerTransform
 import com.simbirsoft.bonus.databinding.ActivityMainBinding
 import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
@@ -67,7 +65,6 @@ class MainActivity : AppCompatActivity(), NavigationListener {
             bottomNavigationRouter.chooseFragment(TimeLineFragment.TAG)
         }
 
-        setBottomNavigationBackground()
         binding.bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener)
     }
 
@@ -121,18 +118,6 @@ class MainActivity : AppCompatActivity(), NavigationListener {
             replace(R.id.fragmentContainer, fragment)
             addToBackStack(null)
         }
-    }
-
-    private fun setBottomNavigationBackground() {
-        val color = ContextCompat.getColorStateList(this, R.color.colorPrimary)
-
-        val radius = resources.getDimension(R.dimen.margin_12dp)
-        val shapeDrawable: MaterialShapeDrawable =
-            binding.bottomNavigationView.background as MaterialShapeDrawable
-        shapeDrawable.shapeAppearanceModel = shapeDrawable.shapeAppearanceModel
-            .toBuilder()
-            .build()
-        shapeDrawable.fillColor = color
     }
 
     @SuppressLint("ResourceAsColor")
