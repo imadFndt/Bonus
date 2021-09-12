@@ -24,13 +24,8 @@ class BonusesFragment : Fragment() {
 
     companion object {
         const val TAG = "BonusesFragment"
-        const val TYPE_ARG = "TYPE_ARG"
 
-        fun newInstance(type: BonusType? = null) = BonusesFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(TYPE_ARG, type)
-            }
-        }
+        fun newInstance() = BonusesFragment()
     }
 
     private lateinit var binding: FragmentBonusesBinding
@@ -70,21 +65,17 @@ class BonusesFragment : Fragment() {
         binding.bonusesChip.onChipSelected = {
             viewModel.changeSelectedType(BonusType.BONUS)
         }
-
-        selectDefaultTypeIfPresent()
         observeViewModel()
     }
 
-    private fun selectDefaultTypeIfPresent() {
-        arguments?.getParcelable<BonusType>(TYPE_ARG)?.let { type ->
-            selectChipByType(type)
-            viewModel.changeSelectedType(type)
-        }
+    fun selectDefaultTypeIfPresent(type: BonusType) {
+        selectChipByType(type)
+        viewModel.changeSelectedType(type)
     }
 
     private fun openItemDetails(item: BonusItem, view: View) {
         val bonus = viewModel.getBonus(item) ?: error("Invalid item $item")
-        navigationListener?.replaceFragment(view, BonusDetailFragment.newInstance(bonus))
+        navigationListener?.replaceFragmentWithAnimation(view, BonusDetailFragment.newInstance(bonus))
     }
 
     private fun observeViewModel() {

@@ -3,6 +3,8 @@ package com.simbirsoft.bonus.util
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.fragment.app.*
+import com.simbirsoft.bonus.domain.entity.bonuses.BonusType
+import com.simbirsoft.bonus.presentation.view.bonuses.BonusesFragment
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
@@ -41,6 +43,21 @@ class BottomNavigationRouter @Inject constructor(
 
             val selectedFragment = fragmentManager.findFragmentByTag(tag)
                 ?: throw IllegalStateException("Fragment with tag $tag not found")
+
+            show(selectedFragment)
+            currentTag = tag
+        }
+    }
+
+    fun chooseBonus(tag: String, type: BonusType) {
+        if (tag == currentTag) return
+        fragmentManager.commit{
+            hideNotNull(fragmentManager.findFragmentByTag(currentTag))
+
+            val selectedFragment = fragmentManager.findFragmentByTag(tag)
+                ?: throw IllegalStateException("Fragment with tag $tag not found")
+
+            (selectedFragment as BonusesFragment).selectDefaultTypeIfPresent(type)
 
             show(selectedFragment)
             currentTag = tag
