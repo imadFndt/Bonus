@@ -29,6 +29,6 @@
         <item quantity="two">%1$d задания</item>
         <item quantity="few">%1$d задания</item>
         <item quantity="many">%1$d заданий</item>
-        <item quantity="other">%1$d заданий</item>
+        <item quantity="other">%1$d задания</item>
     </plurals>
 </resources>
