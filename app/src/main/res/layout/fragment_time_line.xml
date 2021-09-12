@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <com.simbirsoft.bonus.presentation.view.custom.ToolbarView
         android:id="@+id/toolbar"
@@ -32,11 +33,11 @@
             app:ctlv_image_lvl_size="@dimen/margin_48dp"
             app:ctlv_margin_horizontal_image="@dimen/margin_16dp"
             app:ctlv_margin_horizontal_stroke="@dimen/margin_40dp"
-            app:ctlv_margin_horizontal_text="@dimen/margin_80dp"
+            app:ctlv_margin_horizontal_text="@dimen/margin_75dp"
             app:ctlv_margin_top_description="@dimen/margin_4dp"
             app:ctlv_margin_top_progress_icon="@dimen/margin_6dp"
-            app:ctlv_margin_top_title="@dimen/margin_80dp"
-            app:ctlv_progress_icon="@drawable/ic_progress_timeline"
+            app:ctlv_margin_top_title="@dimen/margin_52dp"
+            app:ctlv_progress_icon="@drawable/ic_nlo"
             app:ctlv_radius_size="@dimen/margin_48dp"
             app:ctlv_step_y_first_size="@dimen/margin_20dp"
             app:ctlv_step_y_size="@dimen/margin_80dp"
